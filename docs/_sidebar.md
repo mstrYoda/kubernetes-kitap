@@ -87,6 +87,7 @@
     * [PodSecurityPolicy Kavramı](podsecuritypolicy.md)
     * [Güvenli Containerlar Oluşturma](guvenli-container-olusturma.md)
     * [Node Güvenliğini Sağlama](node-guvenligi.md)
+    * [Open Policy Agent ile Cluster Security](opa_cluster_security.md)
 
 * Sertifika Yönetimi
     * [Dinamik Sertifika Yönetimi - **CertManager**](certmanager.md)
@@ -105,3 +106,4 @@
     * [Terminal UI - **k9s**](k9s.md)
     * [Container Registry Aracı - **crane**](crane.md)
     * [Yaml/kubectl İşlemleri - **kapp**](kapp.md)
+    * [Kubectl ile sniffer - **ksinff**](ksniff.md)
