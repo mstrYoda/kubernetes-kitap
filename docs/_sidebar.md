@@ -108,6 +108,9 @@
     * [EnvoyFilter](envoy-filter.md)
     * [Istio Monitoring](istio-monitoring.md)
 
+* Function as a Service
+    * [OpenFaas](openfaas.md)
+
 * Harici Araçlar
     * [Uygulama Installation - **Helm**](helm.md)
     * [Terminal UI - **k9s**](k9s.md)
@@ -116,3 +119,6 @@
     * [Kubectl ile sniffer - **ksinff**](ksniff.md)
     * [Skopeo - **skopeo**](skopeo.md)
     * [ko - **ko**](ko.md)
+    * [kaniko - **kaniko**](kaniko.md)
+    * [buildah - **buildah**](buildah.md)
+    * [podman - **podman**](podman.md)
