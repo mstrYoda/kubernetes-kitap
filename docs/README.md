@@ -119,9 +119,15 @@ Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
     * [EnvoyFilter](envoy-filter.md)
     * [Istio Monitoring](istio-monitoring.md)
 
+* Function as a Service
+    * [OpenFaas](openfaas.md)
+
 * Harici Araçlar
     * [Uygulama Installation - **Helm**](helm.md)
     * [Terminal UI - **k9s**](k9s.md)
     * [Container Registry Aracı - **crane**](crane.md)
     * [Yaml/kubectl İşlemleri - **kapp**](kapp.md)
     * [Kubectl ile sniffer - **ksinff**](ksniff.md)
+    * [kaniko - **kaniko**](kaniko.md)
+    * [buildah - **buildah**](buildah.md)
+    * [podman - **podman**](podman.md)
