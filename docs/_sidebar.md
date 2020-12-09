@@ -114,3 +114,5 @@
     * [Container Registry Aracı - **crane**](crane.md)
     * [Yaml/kubectl İşlemleri - **kapp**](kapp.md)
     * [Kubectl ile sniffer - **ksinff**](ksniff.md)
+    * [Skopeo - **skopeo**](skopeo.md)
+    * [ko - **ko**](ko.md)
