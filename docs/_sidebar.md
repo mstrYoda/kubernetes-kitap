@@ -21,7 +21,7 @@
     * [**microk8s**](microk8s.md)
 
 * Kubectl Kullanımı
-    * [kubeconfig](kubeconfig.mg)
+    * [kubeconfig](kubeconfig.md)
     * [Pod ve diğer resourceları listeleme](pod-listeleme.md)
     * [Standalone pod oluşturma](standalone-pod.md)
     * [Image belirterek deployment oluşturma](image-ile-deployment-olusturma.md)
