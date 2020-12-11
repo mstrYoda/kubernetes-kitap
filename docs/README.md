@@ -54,6 +54,7 @@ Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
         * [Pod Durumları](pod-durum.md)
         * [Init Container](init-container.md)
     * [Pod Preset](pod-preset.md)
+    * [Static Pod](static-pod.md)
     * [Ephemeral Container](ephemeral-container.md)
     * **Podların Çalışacağı Nodeları Belirleme**
         * [İhtiyaç ve Örnek Senaryolar](bolum-icerigi.md)
