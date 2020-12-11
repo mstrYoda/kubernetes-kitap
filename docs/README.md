@@ -33,10 +33,13 @@ Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
 
 * Kubectl Kullanımı
     * [kubeconfig](kubeconfig.md)
-    * [Pod ve diğer resourceları listeleme](pod-listeleme.md)
-    * [Standalone pod oluşturma](standalone-pod.md)
-    * [Image belirterek deployment oluşturma](image-ile-deployment-olusturma.md)
-    * [Yaml dosyaları ile çalışmak](yaml-dosyalari.md)
+    * **Kubectl İşlemleri**
+        * [Kubectl Apply](kubectl-resource-islemleri?id=kubectl-apply.md)
+        * [Resource Listelemek](kubectl-resource-islemleri?id=resource-listelemek.md)
+        * [Resource Editlemek](kubectl-resource-islemleri?id=resource-editlemek.md)
+        * [JsonPath ile Field filtreleme](kubectl-resource-islemleri?id=jsonpath-ile-field-filtreleme.md)
+        * [Deployment Oluşturmak](kubectl-resource-islemleri?id=deployment-oluşturmak.md)
+        * [Deployment Scale](kubectl-resource-islemleri?id=deployment-scale.md)
 
 * Controllerlar
     * [Controller Kavramı Nedir](controller.md)
