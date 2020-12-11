@@ -54,7 +54,7 @@ Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
     * [Ephemeral Container](ephemeral-container.md)
     * **Podların Çalışacağı Nodeları Belirleme**
         * [İhtiyaç ve Örnek Senaryolar](bolum-icerigi.md)
-        * [NodeSelector Alanı](taint-toleration.md)
+        * [NodeSelector Alanı](nodeselector.md)
         * [Taint ve Tolerant Kavramı](taint-toleration.md)
         * [Node Affinity ve Pod Affinity Kavramı](affinity.md)
 
