@@ -43,6 +43,7 @@
         * [Pod Durumları](pod-durum.md)
         * [Init Container](init-container.md)
     * [Pod Preset](pod-preset.md)
+    * [Static Pod](staticpod.md)
     * [Ephemeral Container](ephemeral-container.md)
     * **Podların Çalışacağı Nodeları Belirleme**
         * [İhtiyaç ve Örnek Senaryolar](bolum-icerigi.md)
