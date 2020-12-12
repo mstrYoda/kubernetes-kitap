@@ -1,14 +1,26 @@
-name: Copy README
-on: [push]
-jobs:
+name: Clone README.md
+on:
+  push:
+    branches:
+      - master
 
-  build:
-    name: Build
-    runs-on: ubuntu-latest
+jobs:
+  ci:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [14]
+
     steps:
-    - uses: actions/checkout@master
-    - name: copy file
-      uses: canastro/copy-file-action@master
-      with:
-        source: "README.md"
-        target: "docs/README.md"
+      - name: Copy the README.md
+        run: |
+          cp README.md docs/README.md
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          force: true
