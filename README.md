@@ -1,4 +1,4 @@
-![k8s](kubernetes.png)
+![k8s](./kubernetes.png)
 
 # Hoş geldiniz
 
