@@ -4,12 +4,12 @@
 
 > Open Source severler olarak bir araya gelip, Kubernetes için Türkçe kaynak olması açısından bu kitabı hazırladık ve siz değerli okuyuculara sunduk.
 
-Kitabın adresi: https..//mstryoda.github.io/kubernetes-kitap/#/
+Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
 
 
 # Konu Başlıkları
 
-<!-- doc../_sidebar.md -->
+<!-- docs/_sidebar.md -->
 
 * Giriş
     * [Kubernetes Nedir](../docs/kubernetes-nedir.md)
@@ -113,7 +113,7 @@ Kitabın adresi: https..//mstryoda.github.io/kubernetes-kitap/#/
 
 * Kubernetes Development - Extensibility
     * [Custom Resource Definition ve CR Yapısı](../docs/crd-cr.md)
-    * [Admission Webhook ile Validasyo../Mutasyon](./docs/admissionwebhook.md)
+    * [Admission Webhook ile Validasyon/Mutasyon](../docs/admissionwebhook.md)
     * [Operator Framework](../docs/operator.md)
 
 * Service Mesh - Istio
@@ -130,7 +130,7 @@ Kitabın adresi: https..//mstryoda.github.io/kubernetes-kitap/#/
     * [Uygulama Installation - **Helm**](../docs/helm.md)
     * [Terminal UI - **k9s**](../docs/k9s.md)
     * [Container Registry Aracı - **crane**](../docs/crane.md)
-    * [Yam../kubectl İşlemleri - **kapp**](./docs/kapp.md)
+    * [Yaml/kubectl İşlemleri - **kapp**](../docs/kapp.md)
     * [Kubectl ile sniffer - **ksinff**](../docs/ksniff.md)
     * [kaniko - **kaniko**](../docs/kaniko.md)
     * [buildah - **buildah**](../docs/buildah.md)

@@ -9,7 +9,7 @@ jobs:
     - uses: actions/checkout@master
     - name: Copy the README.md
       run: |
-        sed 's/.\//..\//' README.md > docs/README.md
+        sed 's/[.]\//..\//' README.md > docs/README.md
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
