@@ -1,4 +1,4 @@
-![k8s](./kubernetes.png)
+![k8s](https://raw.githubusercontent.com/mstrYoda/kubernetes-kitap/master/)
 
 # Hoş geldiniz
 
