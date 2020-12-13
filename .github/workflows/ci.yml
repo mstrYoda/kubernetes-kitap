@@ -10,6 +10,11 @@ jobs:
     - name: Copy the README.md
       run: |
         sed 's/[.]\//..\//' README.md > docs/README.md
+        git add .
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "Clone the main README.md into docs/ dir"
+
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
