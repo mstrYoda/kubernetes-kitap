@@ -12,126 +12,126 @@ Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
 <!-- docs/_sidebar.md -->
 
 * Giriş
-    * [Kubernetes Nedir](../docs/kubernetes-nedir.md)
-    * [Kubernetes Cluster Mimarisi](../docs/cluster.md)
-    * [Pod ve Container Kavramı](../docs/pod-container.md)
+    * [Kubernetes Nedir](kubernetes-nedir.md)
+    * [Kubernetes Cluster Mimarisi](cluster.md)
+    * [Pod ve Container Kavramı](pod-container.md)
 
 * Kubernetes Node Elemanları
-    * [etcd](../docs/etcd.md)
-    * [api-server](../docs/api-server.md)
-    * [kubelet](../docs/kubelet.md)
-    * [kube-proxy](../docs/kube-proxy.md)
-    * [controller-manager](../docs/controller-manager.md)
-    * [scheduler](../docs/scheduler.md)
+    * [etcd](etcd.md)
+    * [api-server](api-server.md)
+    * [kubelet](kubelet.md)
+    * [kube-proxy](kube-proxy.md)
+    * [controller-manager](controller-manager.md)
+    * [scheduler](scheduler.md)
 
 * Development Ortamı Kurulumu
-    * [**kind**](../docs/kind.md)
-    * [**minikube**](../docs/minikube.md)
-    * [**k3s**](../docs/k3s.md)
-    * [**k3d**](../docs/k3d.md)
-    * [**microk8s**](../docs/microk8s.md)
+    * [**kind**](kind.md)
+    * [**minikube**](minikube.md)
+    * [**k3s**](k3s.md)
+    * [**k3d**](k3d.md)
+    * [**microk8s**](microk8s.md)
 
 * Kubectl Kullanımı
-    * [kubeconfig](../docs/kubeconfig.md)
+    * [kubeconfig](kubeconfig.md)
     * **Kubectl İşlemleri**
-        * [Kubectl Apply](../docs/kubectl-resource-islemleri?id=kubectl-apply.md)
-        * [Resource Listelemek](../docs/kubectl-resource-islemleri?id=resource-listelemek.md)
-        * [Resource Editlemek](../docs/kubectl-resource-islemleri?id=resource-editlemek.md)
-        * [JsonPath ile Field filtreleme](../docs/kubectl-resource-islemleri?id=jsonpath-ile-field-filtreleme.md)
-        * [Deployment Oluşturmak](../docs/kubectl-resource-islemleri?id=deployment-oluşturmak.md)
-        * [Deployment Scale](../docs/kubectl-resource-islemleri?id=deployment-scale.md)
+        * [Kubectl Apply](kubectl-resource-islemleri?id=kubectl-apply.md)
+        * [Resource Listelemek](kubectl-resource-islemleri?id=resource-listelemek.md)
+        * [Resource Editlemek](kubectl-resource-islemleri?id=resource-editlemek.md)
+        * [JsonPath ile Field filtreleme](kubectl-resource-islemleri?id=jsonpath-ile-field-filtreleme.md)
+        * [Deployment Oluşturmak](kubectl-resource-islemleri?id=deployment-oluşturmak.md)
+        * [Deployment Scale](kubectl-resource-islemleri?id=deployment-scale.md)
 
 * Controllerlar
-    * [Controller Kavramı Nedir](../docs/controller.md)
-    * [Deployments](../docs/deployments.md)
-    * [StatefulSets](../docs/statefulsets.md)
-    * [DaemonSets](../docs/daemonsets.md)
-    * [ReplicaSets](../docs/replicasets.md)
+    * [Controller Kavramı Nedir](controller.md)
+    * [Deployments](deployments.md)
+    * [StatefulSets](statefulsets.md)
+    * [DaemonSets](daemonsets.md)
+    * [ReplicaSets](replicasets.md)
 
 * Pod Genel Bakış
     * **Pod Yaşam Döngüsü**
-        * [Container Statüleri](../docs/container-faz.md)
-        * [Pod Durumları](../docs/pod-durum.md)
-        * [Init Container](../docs/init-container.md)
-    * [Pod Preset](../docs/pod-preset.md)
-    * [Static Pod](../docs/static-pod.md)
-    * [Ephemeral Container](../docs/ephemeral-container.md)
+        * [Container Statüleri](container-faz.md)
+        * [Pod Durumları](pod-durum.md)
+        * [Init Container](init-container.md)
+    * [Pod Preset](pod-preset.md)
+    * [Static Pod](static-pod.md)
+    * [Ephemeral Container](ephemeral-container.md)
     * **Podların Çalışacağı Nodeları Belirleme**
-        * [İhtiyaç ve Örnek Senaryolar](../docs/bolum-icerigi.md)
-        * [NodeSelector Alanı](../docs/nodeselector.md)
-        * [Taint ve Tolerant Kavramı](../docs/taint-toleration.md)
-        * [Node Affinity ve Pod Affinity Kavramı](../docs/affinity.md)
+        * [İhtiyaç ve Örnek Senaryolar](bolum-icerigi.md)
+        * [NodeSelector Alanı](nodeselector.md)
+        * [Taint ve Tolerant Kavramı](taint-toleration.md)
+        * [Node Affinity ve Pod Affinity Kavramı](affinity.md)
 
 * Uygulama Kaynaklarının Konfigürasyonu
-    * [ResourceQuata Objesi](../docs/resourcequata.md)
-    * [LimitRange Objesi](../docs/limitrange.md)
+    * [ResourceQuata Objesi](resourcequata.md)
+    * [LimitRange Objesi](limitrange.md)
 
 * Health Check İşlemleri
-    * [Health Check Yöntemleri](../docs/health-check-yontemleri.md)
-    * [LivenessProbe](../docs/liveness.md)
-    * [ReadinessProbe](../docs/readiness.md)
+    * [Health Check Yöntemleri](health-check-yontemleri.md)
+    * [LivenessProbe](liveness.md)
+    * [ReadinessProbe](readiness.md)
 
 * HorizontalPodAutoscaler ile Scaling
-    * [Ram & Cpu Bazlı Uygulama Scale Etme](../docs/hpa.md)
-    * [Custom Metrikler ile Scaling](../docs/hpa.md)
+    * [Ram & Cpu Bazlı Uygulama Scale Etme](hpa.md)
+    * [Custom Metrikler ile Scaling](hpa.md)
 
 * Config ve Secret Yönetimi
-    * [ConfigMap Objesi](../docs/configmap.md)
-    * [Secret Objesi](../docs/secret.md)
+    * [ConfigMap Objesi](configmap.md)
+    * [Secret Objesi](secret.md)
 
 * Networking
-    * [Service Objesi ve Service Tipleri](../docs/service.md)
-    * [Endpoint Objesi](../docs/endpoint.md)
-    * [Ingress Objesi ve Trafik Yönlendirme](../docs/ingress.md)
-    * [Podlar Arası İletişim](../docs/podlar-arasi-iletisim.md)
-    * [Nodelar Arası İletişim](../docs/nodelar-arasi-iletisim.md)
+    * [Service Objesi ve Service Tipleri](service.md)
+    * [Endpoint Objesi](endpoint.md)
+    * [Ingress Objesi ve Trafik Yönlendirme](ingress.md)
+    * [Podlar Arası İletişim](podlar-arasi-iletisim.md)
+    * [Nodelar Arası İletişim](nodelar-arasi-iletisim.md)
 
 * Depolama (Volume) İşlemleri
-    * [Volume Objesi](../docs/volume.md)
-    * [PersistentVolume](../docs/persistentvolume.md)
-    * [PersistentVolumeClaim](../docs/persistentvolumeclaim.md)
-    * [Storage Extensions](../docs/storage-extensions.md)
+    * [Volume Objesi](volume.md)
+    * [PersistentVolume](persistentvolume.md)
+    * [PersistentVolumeClaim](persistentvolumeclaim.md)
+    * [Storage Extensions](storage-extensions.md)
 
 * Uygulama ve Kullanıcı Rollerinin Yönetimi
-    * [RBAC Kavramı](../docs/rbac.md)
-    * [ServiceAccount](../docs/serviceaccount.md)
-    * [Role ve RoleBinding](../docs/role.md)
-    * [ClusterRole ve ClusterRoleBinding](../docs/clusterrole.md)
+    * [RBAC Kavramı](rbac.md)
+    * [ServiceAccount](serviceaccount.md)
+    * [Role ve RoleBinding](role.md)
+    * [ClusterRole ve ClusterRoleBinding](clusterrole.md)
 
 * Güvenlik
-    * [PodSecurityPolicy Kavramı](../docs/podsecuritypolicy.md)
-    * [Güvenli Containerlar Oluşturma](../docs/guvenli-container-olusturma.md)
-    * [Node Güvenliğini Sağlama](../docs/node-guvenligi.md)
-    * [Open Policy Agent ile Cluster Security](../docs/opa_cluster_security.md)
+    * [PodSecurityPolicy Kavramı](podsecuritypolicy.md)
+    * [Güvenli Containerlar Oluşturma](guvenli-container-olusturma.md)
+    * [Node Güvenliğini Sağlama](node-guvenligi.md)
+    * [Open Policy Agent ile Cluster Security](opa_cluster_security.md)
 
 * Sertifika Yönetimi
-    * [Dinamik Sertifika Yönetimi - **CertManager**](../docs/certmanager.md)
+    * [Dinamik Sertifika Yönetimi - **CertManager**](certmanager.md)
 
 * Administration İşlemleri
-    * [Cluster Kurulumu](../docs/kurulum.md)
-    * [Grafana ve Prometheus ile Monitoring](../docs/monitoring.md)
+    * [Cluster Kurulumu](kurulum.md)
+    * [Grafana ve Prometheus ile Monitoring](monitoring.md)
 
 * Kubernetes Development - Extensibility
-    * [Custom Resource Definition ve CR Yapısı](../docs/crd-cr.md)
-    * [Admission Webhook ile Validasyon/Mutasyon](../docs/admissionwebhook.md)
-    * [Operator Framework](../docs/operator.md)
+    * [Custom Resource Definition ve CR Yapısı](crd-cr.md)
+    * [Admission Webhook ile Validasyon/Mutasyon](admissionwebhook.md)
+    * [Operator Framework](operator.md)
 
 * Service Mesh - Istio
-    * [Istio Kurulumu](../docs/istio-kurulum.md)
-    * [Istio ile Mesh Security](../docs/istio-mesh-security.md)
-    * [VirtualService RequestRouting](../docs/vs-request-routing.md)
-    * [EnvoyFilter](../docs/envoy-filter.md)
-    * [Istio Monitoring](../docs/istio-monitoring.md)
+    * [Istio Kurulumu](istio-kurulum.md)
+    * [Istio ile Mesh Security](istio-mesh-security.md)
+    * [VirtualService RequestRouting](vs-request-routing.md)
+    * [EnvoyFilter](envoy-filter.md)
+    * [Istio Monitoring](istio-monitoring.md)
 
 * Function as a Service
-    * [OpenFaas](../docs/openfaas.md)
+    * [OpenFaas](openfaas.md)
 
 * Harici Araçlar
-    * [Uygulama Installation - **Helm**](../docs/helm.md)
-    * [Terminal UI - **k9s**](../docs/k9s.md)
-    * [Container Registry Aracı - **crane**](../docs/crane.md)
-    * [Yaml/kubectl İşlemleri - **kapp**](../docs/kapp.md)
-    * [Kubectl ile sniffer - **ksinff**](../docs/ksniff.md)
-    * [kaniko - **kaniko**](../docs/kaniko.md)
-    * [buildah - **buildah**](../docs/buildah.md)
-    * [podman - **podman**](../docs/podman.md)
+    * [Uygulama Installation - **Helm**](helm.md)
+    * [Terminal UI - **k9s**](k9s.md)
+    * [Container Registry Aracı - **crane**](crane.md)
+    * [Yaml/kubectl İşlemleri - **kapp**](kapp.md)
+    * [Kubectl ile sniffer - **ksinff**](ksniff.md)
+    * [kaniko - **kaniko**](kaniko.md)
+    * [buildah - **buildah**](buildah.md)
+    * [podman - **podman**](podman.md)

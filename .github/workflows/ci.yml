@@ -9,7 +9,7 @@ jobs:
     - uses: actions/checkout@master
     - name: Copy the README.md
       run: |
-        sed 's/[.]\//..\//' README.md > docs/README.md
+        sed 's/[.]\/docs\///' README.md > docs/README.md
         git add .
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
