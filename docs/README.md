@@ -124,7 +124,7 @@ Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
     * [Istio Monitoring](istio-monitoring.md)
 
 * Function as a Service
-    * [OpenFaas](openfaas.md)
+    * [OpenFaaS](openfaas.md)
 
 * Harici Araçlar
     * [Uygulama Installation - **Helm**](helm.md)
