@@ -123,8 +123,9 @@ Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
     * [EnvoyFilter](./docs/envoy-filter.md)
     * [Istio Monitoring](./docs/istio-monitoring.md)
 
-* Function as a Service
+* Function as a Service / Serverless
     * [OpenFaaS](./docs/openfaas.md)
+    * [Knative] (./docs/knative.md)
 
 * Harici Araçlar
     * [Uygulama Installation - **Helm**](./docs/helm.md)
