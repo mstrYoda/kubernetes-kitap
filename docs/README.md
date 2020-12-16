@@ -125,7 +125,7 @@ Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
 
 * Function as a Service / Serverless
     * [OpenFaaS](openfaas.md)
-    * [Knative] (knative.md)
+    * [Knative](knative.md)
 
 * Harici Araçlar
     * [Uygulama Installation - **Helm**](helm.md)
