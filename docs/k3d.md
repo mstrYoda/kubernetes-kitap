@@ -2,7 +2,7 @@
 
 ## K3S (Lightweight Kubernetes) 
 
-K3S, 2019 yılında açık kaynak olarak rancher tarafından piyasaya sürüldü. K3S, 100mb’ın altında bir binary dosyası olarak tasarlanmıştır. Ayrıca sertifikalı bir Kubernetes aracıdır. Ayrıca cross platform çalışabiliyor.
+K3S, 2019 yılında açık kaynak olarak rancher tarafından piyasaya sürüldü. K3S, 100mb’ın altında bir binary dosyası olarak tasarlanmıştır. Ayrıca sertifikalı bir Kubernetes aracıdır ve cross platform çalışabilme özelliğine sahiptir.
 K3S hafifliği sayesinde çok düşük sistemlerde bile kubernetes cluster’ı kurabilmemize olanak sağlıyor. K3S önerilen sistem gereksinimleri aşagıdadır.;      
 - Linux 3.10   
 - 512 MB RAM (sunucu)   
@@ -44,12 +44,12 @@ kubectl version
 
 ### 1.3 - K3D Kurulumu
 
-K3D kurulumu basit, yapmanız gereken terminale aşağıdaki komudu girmek.
+K3D kurulumu basit, yapmanız gereken terminale aşağıdaki komutu girmek.
 
 ```
 $ wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
 ```
-Kodunu girdikten sonra terminalden şu çıktıyı aldıysanız kurulumunuz başarıyla olmuştur. 
+Kodunu girdikten sonra terminalden şu çıktıyı aldıysanız kurulumunuz başarılı olmuştur. 
 ```
 k3d installed into /usr/local/bin/k3d
 run 'k3d --help' to see what you can do with it
@@ -70,7 +70,7 @@ $ k3d --verison
 - 'k3d cluster delete [cluster name]' ile cluster silebilirsiniz.    
   Cluster ismi yerine -a parametresi ile toplu seçim yapabilirsiniz.
 - 'k3d cluster list' ile clusterlarınızı listeleyebilirsiniz.
-- 'k3d cluster start [cluster name]' ile clusterlarınızı başlatabilirisniz. '-a' parametresi burda da geçerli.
+- 'k3d cluster start [cluster name]' ile clusterlarınızı başlatabilirisniz. '-a' parametresi burada da geçerli.
 - 'k3d cluster stop [cluster name]' ile clusterlarınızı durdurabilirsiniz. '-a' parametresi kullanımı geçerlidir.
 
 ### 'k3d node' komutu ile:
