@@ -79,3 +79,28 @@ $ k3d --verison
 - 'k3d node list' ile nodelarınızı listeleyebilirsiniz.
 - 'k3d node start [node name]' ile nodelarınızı başlatabilirsiniz. '-a' parametresi geçerlidir.
 - 'k3d node stop [node name]' ile nodelarınızı durdurabilirsiniz. '-a' parametresi geçerlidir.
+
+### Önemli olan komutlar genel olarak böyle.
+
+## K3D ile Cluster Kurulumu
+Terminalinize aşağıdaki komutta gördüğünüz gibi sizde kendi belirlediğiniz isim ile cluster oluşturmaya başlayabilirsiniz.    
+
+```
+$ k3d cluster create [NAME]
+```
+İlk cluster kurulumunda yaklaşık 200mb boyutunda imaj çekilmesi gerektiği için kurulum süresi internet hızınıza göre değişkenlik gösterebilir.   
+![list cluster](https://raw.githubusercontent.com/mstrYoda/kubernetes-kitap/master/docs/images/2020-12-24_18-43.png) 
+
+resimdeki komut ile önceden oluşturduğunuz cluster'ları ve durumlarını listeleyebilirsiniz.    
+
+Veridiğimiz kod ile cluster ortamı oluşturduysanız bir app deploy ettiğimiz zaman buna erişiminiz olmaz. Çünkü herhangi bir port'a izin vermediğimiz için sadece cluster içinde çalışır.
+
+## Servislere Erişim:
+
+K3D kullanırkende öncesinde port açmamız gerekiyor fakat bunun için bize bir çok yol sunmakta, ister node-port olarak istersek de Load Balancer aracılığı ile uygulamalarımıza erişebiliyoruz.
+
+### K3D Load Balancer Ayarları
+K3D varsayılan olarak traefik kullanıyor. Eğer k3d kurulumunu bir sunucuya yaptıysanız erişim için dışarı port açmanız gerekiyor bunun için aşağıdaki komutu terminalinize yazarak load balancer’ımızı dışarı açıyoruz.
+```
+$ k3d cluster create [NAME] -p 80:80@loadbalancer 
+```
