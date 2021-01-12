@@ -2,4 +2,4 @@
 
 ## KUBELET
 
-Worker nodeların üzerinde çalışan ajandır,containerların durumunu kontrol eder.Yeni containerlar oluşturur,container imajlarını registry storedan çeker ve podları başlatır.
+Tüm nodeların üzerinde çalışan processdir, containerların durumunu kontrol eder. Yeni containerlar oluşturur, container imajlarını registry storedan çeker ve podları başlatır.

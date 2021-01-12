@@ -2,4 +2,4 @@
 
 ## KUBE-APISERVER
 
-İşlemler için gerekli istekleri kabul eder ve yönlendirir,master nodeun yönetim noktasıdır.
+İşlemler için gerekli istekleri kabul eder ve yönlendirir, master nodeun yönetim noktasıdır.

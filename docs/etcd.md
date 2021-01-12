@@ -2,4 +2,4 @@
 
 ## ETCD
 
-Tüm kubernetes componentlerinin statuslerini,dağıtık mimariyle key/value olarak içinde tutar.Tek stateful bileşendir.
+Tüm kubernetes componentlerinin statuslerini, dağıtık mimariyle key/value olarak içinde tutar. Tek stateful bileşendir.
