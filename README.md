@@ -70,6 +70,7 @@ Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
     * [Health Check Yöntemleri](./docs/health-check-yontemleri.md)
     * [LivenessProbe](./docs/liveness.md)
     * [ReadinessProbe](./docs/readiness.md)
+    * [StartupProbe](./docs/startup.md)
 
 * HorizontalPodAutoscaler ile Scaling
     * [Ram & Cpu Bazlı Uygulama Scale Etme](./docs/hpa.md)
