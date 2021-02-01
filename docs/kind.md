@@ -4,9 +4,12 @@ Kind, Docker kullanarak kubernetes kümesi oluşturmamızı sağlayan bir araçt
 
 Yani bugün vagrant ile ayağa kaldırdığımız sunucuya docker ve kind kurarak bir kubernetes ortamı oluşturmaya çalışacağız. Öyleyse başlayalım…
 
+> **NOT:** Vagrant kullanmak istemiyorsanız 2.adımdan devam edebilirsiniz. Docker olan bir ortamda kolaylıkla adımları uygulayabilirsiniz.
+
+
 ## 1) Vagrantfile Hazırlama
 
-Başlamadan önce Vagrant’ın ne olduğuna biraz değinelim. Vagrant, sanal makine oluşturmak ve oluşturulan sanal makineleri yönetmek için kullanılan oldukça kullanışlı bir araçtır. Bizde vagrant ile bir sanal ubuntu makinesi oluşturacağız. Ben aşağıdaki gibi bir Vagrantfile hazırladım ve sunucu özelliklerini minimum düzeyde tuttum. Sizde burdaki ayarları kendinize göre değiştirebilirsiniz.
+Başlamadan önce Vagrant’ın ne olduğuna biraz değinelim. Vagrant, sanal makine oluşturmak ve oluşturulan sanal makineleri yönetmek için kullanılan oldukça kullanışlı bir araçtır. Bizde vagrant ile bir sanal ubuntu makinesi oluşturacağız. Ben aşağıdaki gibi bir Vagrantfile hazırladım ve sunucu özelliklerini minimum düzeyde tuttum. Sizde buradaki ayarları kendinize göre değiştirebilirsiniz.
 
 ```
 IMAGE_NAME = "bento/ubuntu-16.04"
@@ -37,7 +40,7 @@ vagrant up komutu ile bento/ubuntu-16.04 box’ını çektik ve ayağa kaldırd�
 
 ## 2) Docker Kurulumu
 
-Docker’ı hızlı bir şekilde kurmak için [bu](https://docs.docker.com/engine/install/ubuntu/) adresten kullandığınız ortama uygun olarak kurabilirsiniz. Bende docker’ın kendi kurulum talimatlarını referans alarak sizlere ubuntu için gereken adımları aşağıya sıralı olarak ekleyeceğim. Bunları adım adım vagrant ile ayağa kaldırdığınız sunucuda uygulayabilirsiniz.
+Docker’ı hızlı bir şekilde kurmak için [bu](https://docs.docker.com/engine/install/ubuntu/) adresinden kullandığınız ortama uygun olarak kurabilirsiniz. Bende docker’ın kendi kurulum talimatlarını referans alarak sizlere ubuntu için gereken adımları aşağıya sıralı olarak ekleyeceğim. Bunları adım adım vagrant ile ayağa kaldırdığınız sunucuda uygulayabilirsiniz.
 
 
 ```
@@ -68,7 +71,7 @@ $ usermod -aG docker ${USER}
 ```
 
 
-Kurulum adımlarını yaptıktan sonra şimdi başlayıp silinecek bir test container’ı başlatalım.
+Kurulum adımlarını yaptıktan sonra başlayıp silinecek bir test container’ı başlatalım.
 
 
 ```
@@ -78,7 +81,7 @@ $ docker run --rm hello-world && docker rmi hello-world
 
 Eğer yukarıdaki gibi bir çıktı aldıysanız docker’da başarılı bir şekilde kurulmuş demektir.
 
-> NOT: Eğer yukarıdaki gibi bir çıktı almadıysanız bunun sebebi kurulum adımının sonunda girdiğiniz komuttan dolayı olmakta. Exit ile sunucudan çıkıp tekrar login olduktan sonra sorununuzun düzelmiş olması gerekmekte.
+> NOT: Eğer yukarıdaki gibi bir çıktı almadıysanız bunun sebebi kurulum adımının sonunda girdiğiniz komuttan dolayı olmakta. Exit ile sunucudan çıkıp veya terminalinizi yeniledikten sonra sorununuzun düzelmiş olması gerekiyor.
 
 ## 3) Kind Kurulumu
 
