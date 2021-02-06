@@ -9,7 +9,7 @@ Yani bugün vagrant ile ayağa kaldırdığımız sunucuya docker ve kind kurara
 
 ## 1) Vagrantfile Hazırlama
 
-Başlamadan önce Vagrant’ın ne olduğuna biraz değinelim. Vagrant, sanal makine oluşturmak ve oluşturulan sanal makineleri yönetmek için kullanılan oldukça kullanışlı bir araçtır. Bizde vagrant ile bir sanal ubuntu makinesi oluşturacağız. Ben aşağıdaki gibi bir Vagrantfile hazırladım ve sunucu özelliklerini minimum düzeyde tuttum. Sizde buradaki ayarları kendinize göre değiştirebilirsiniz.
+Başlamadan önce Vagrant’ın ne olduğuna biraz değinelim. Vagrant, sanal makine oluşturmak ve oluşturulan sanal makineleri yönetmek için kullanılan oldukça kullanışlı bir araçtır. Bizde vagrant ile bir sanal ubuntu makinesi oluşturacağız. Ben aşağıdaki gibi bir Vagrantfile hazırladım ve sunucu özelliklerini minimum düzeyde tuttum. Siz de buradaki ayarları kendinize göre değiştirebilirsiniz.
 
 ```
 IMAGE_NAME = "bento/ubuntu-16.04"
@@ -40,7 +40,7 @@ vagrant up komutu ile bento/ubuntu-16.04 box’ını çektik ve ayağa kaldırd�
 
 ## 2) Docker Kurulumu
 
-Docker’ı hızlı bir şekilde kurmak için [bu](https://docs.docker.com/engine/install/ubuntu/) adresinden kullandığınız ortama uygun olarak kurabilirsiniz. Bende docker’ın kendi kurulum talimatlarını referans alarak sizlere ubuntu için gereken adımları aşağıya sıralı olarak ekleyeceğim. Bunları adım adım vagrant ile ayağa kaldırdığınız sunucuda uygulayabilirsiniz.
+Docker’ı hızlı bir şekilde kurmak için [bu](https://docs.docker.com/engine/install/ubuntu/) adresinden kullandığınız ortama uygun olarak kurabilirsiniz. Ben de docker’ın kendi kurulum talimatlarını referans alarak sizlere ubuntu için gereken adımları aşağıya sıralı olarak ekleyeceğim. Bunları adım adım vagrant ile ayağa kaldırdığınız sunucuda uygulayabilirsiniz.
 
 
 ```
@@ -110,7 +110,7 @@ $ kubectl version
 
 ## 5) Kind ile Kubernetes Cluster Kurulumu
 
-Başlamadan önce önemli bir konuya değinmek istiyorum. Eğer sizde benim gibi vagrant, virtualbox, vmware gibi bir ortamda sunucu ayağa kaldırıp bu sunucuya docker ve kind kurup işlemlerinizi yapıyorsanız bazı ayarlar yapmanız gerekicek(birazdan bahsedeceğim). Fakat bu şekilde değilde, bir linux kullanıyorsanız ve docker’ınız bu linux üzerindeyse veya windows kullanıyorsanız ve docker’ınız docker desktop ise işiniz gayet kolay. Peki ne bu ayarlar?
+Başlamadan önce önemli bir konuya değinmek istiyorum. Eğer siz de benim gibi vagrant, virtualbox, vmware gibi bir ortamda sunucu ayağa kaldırıp bu sunucuya docker ve kind kurup işlemlerinizi yapıyorsanız bazı ayarlar yapmanız gerekicek(birazdan bahsedeceğim). Fakat bu şekilde değilde, bir linux kullanıyorsanız ve docker’ınız bu linux üzerindeyse veya windows kullanıyorsanız ve docker’ınız docker desktop ise işiniz gayet kolay. Peki ne bu ayarlar?
 
 Kind docker container olarak çalışmakta ve bu yüzden biz araya label(vagrant vs) eklediğimiz zaman bu node’da ayağa kaldırdığımız uygulamalara dışardan erişemeyeceğiz doğal olarak(sunucu içinden veya container’a exec olarak erişebilirsiniz sadece). İşte bu noktada bizim cluster’ı ayağa kaldırırken hazırlamamız gereken bir config dosyası olması gerekiyor ve bu config dosyasında istediğimiz portları belirtmemiz gerekiyor. Ben uygulamalara nodePort vereceğim için bu port aralığı 30000–32767 olmalı yani bu aralıkta dışarı bir port açmam gerekiyor. Lafı uzatmadan işlemlerimize devam edelim bu sayede daha iyi anlayacaksınız. Şimdi önce local de çalışanlar için nasıl cluster kurulacağınız göstereceğim ve daha sonra vagrant, vmware vs. ortamında çalışanlar için ne yapılması gerektiğini göstereceğim.
 
@@ -174,4 +174,4 @@ Daha sonra tekrar başlatmak için yukarda oluşturduğumuz komutu girmeniz yete
 
 > **NOT:** Unutmayın silip tekrar cluster oluştururken bir sanal sunucu kullanıyorsanız mutlaka `— config`parametresini kullanmanız gerekiyor. Biz tek port açmıştık fakat siz daha fazla port açabilirsiniz ve bu şekilde uygulamalara erişebilirsiniz. NodePort kullanmak istemezseniz eğer bunun dışında bir çok yol bulunmakta, bunlardan biriside `_kubectl port-forward_` ,dilerseniz [bu](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/) adreesten daha fazla bilgi alabilirsiniz. kullanabilirsiniz.
 
-Kind bence hızlı bir şekilde cluster ortamı kurabildiği için ve hızlı bir şekilde testlerimizi yapabildiğimiz için çok kullanışlı bir araç. Fakat birçok sıkıntısı bulunmakta ve bu sıkıntılarında zaman geçtikçe giderileceğine inanıyorum. Kind ile birden fazla node ayağa kaldırabilirsiniz. Daha fazla bilgi için sizi kind’ın kendi [dökümanına](https://kind.sigs.k8s.io/) alalım.
+Kind hızlı bir şekilde cluster ortamı kurabileceğimiz ve testlerimizi yapabileceğimiz çok kullanışlı bir araç. Ayrıca kind ile birden fazla node ayağa kaldırabilirsiniz. Daha fazla bilgi için kind’ın kendi [dökümanını](htthttps://kind.sigs.k8s.io/docs/user/quick-start/#controlplane-ha) ziyaret edebilirsiniz.
