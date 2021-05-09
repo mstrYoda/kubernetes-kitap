@@ -6,7 +6,7 @@ Pod’ların bir diğer önemli görevinin de soyutlama olduğu rahatlıkla söy
 
 Pod’ların doğası gereği birden fazla container’ı desteklemesi init container, app containers, side car v.b. mantıkların gelişmesine de olanak sunarak container’lardan bağımsız olarak biz geliştiricilere önemli esneklikler de kazandırmıştır. Örneğin; nginx container’ı ile belirli bir dizindeki dosyaları sunan bir pod’un ayağa kalkarken init container’ında sunulacak bu dosyaların hazırlanması sağlanabilir.
 
-Bu esneklik beraberinde bir sorumluluk da getirmektedir. Pod içerisindeki container’ların aynı kavnakları kullanmaları nedeniyle kaynak yönetimine dikkat edilmelidir. Örneğin; pod içeriside birden fazla container’ın aynı network portunu kullanmak istemesi hataya neden olacaktır.
+Bu esneklik beraberinde bir sorumluluk da getirmektedir. Pod içerisindeki container’ların aynı kaynakları kullanmaları nedeniyle kaynak yönetimine dikkat edilmelidir. Örneğin; pod içeriside birden fazla container’ın aynı network portunu kullanmak istemesi hataya neden olacaktır.
 
 Pod’larda dikkat edilmesi gereken bir diğer konu da Kubernetes’in pod’lara olan yaklaşımıdır. Kubernetes bakış açısıyla pod’lar fanidir. Herhangi bir zamanda Kubernetes tarafından çalışmaları sonlandırılabilir. Çalışmalarının sonlanması ile birlikte varsayılan olarak verileri de kaybolacaktır. Dolayısıyla Kubernetes’te geliştirilen uygulamaların saklamaları gereken verileri varsa ram ya da yerel disk alanından farklı yerlerde saklamaları tavsiye edilmektedir. Bu alan, uzaktaki bir veritabanı olabileceği gibi dosya sistemine bağlanmış bulut depolama alanları da olabilir.
 
