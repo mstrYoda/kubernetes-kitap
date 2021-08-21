@@ -9,6 +9,8 @@ Yani bugün vagrant ile ayağa kaldırdığımız sunucuya docker ve kind kurara
 
 ## 1) Vagrantfile Hazırlama
 
+Öncelikle bilgisayarınıza daha önce Vagrant'ı kurmadıysanız [bu](https://www.vagrantup.com/downloads) adresten sisteminize göre indirebilirsiniz. 
+
 Başlamadan önce Vagrant’ın ne olduğuna biraz değinelim. Vagrant, sanal makine oluşturmak ve oluşturulan sanal makineleri yönetmek için kullanılan oldukça kullanışlı bir araçtır. Bizde vagrant ile bir sanal ubuntu makinesi oluşturacağız. Ben aşağıdaki gibi bir Vagrantfile hazırladım ve sunucu özelliklerini minimum düzeyde tuttum. Siz de buradaki ayarları kendinize göre değiştirebilirsiniz.
 
 ```
