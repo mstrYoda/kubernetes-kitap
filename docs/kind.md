@@ -9,6 +9,8 @@ Yani bugün vagrant ile ayağa kaldırdığımız sunucuya docker ve kind kurara
 
 ## 1) Vagrantfile Hazırlama
 
+Öncelikle bilgisayarınıza daha önce Vagrant'ı kurmadıysanız [bu](https://www.vagrantup.com/downloads) adresten sisteminize göre indirebilirsiniz. 
+
 Başlamadan önce Vagrant’ın ne olduğuna biraz değinelim. Vagrant, sanal makine oluşturmak ve oluşturulan sanal makineleri yönetmek için kullanılan oldukça kullanışlı bir araçtır. Bizde vagrant ile bir sanal ubuntu makinesi oluşturacağız. Ben aşağıdaki gibi bir Vagrantfile hazırladım ve sunucu özelliklerini minimum düzeyde tuttum. Siz de buradaki ayarları kendinize göre değiştirebilirsiniz.
 
 ```
@@ -174,4 +176,4 @@ Daha sonra tekrar başlatmak için yukarda oluşturduğumuz komutu girmeniz yete
 
 > **NOT:** Unutmayın silip tekrar cluster oluştururken bir sanal sunucu kullanıyorsanız mutlaka `— config`parametresini kullanmanız gerekiyor. Biz tek port açmıştık fakat siz daha fazla port açabilirsiniz ve bu şekilde uygulamalara erişebilirsiniz. NodePort kullanmak istemezseniz eğer bunun dışında bir çok yol bulunmakta, bunlardan biriside `_kubectl port-forward_` ,dilerseniz [bu](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/) adreesten daha fazla bilgi alabilirsiniz. kullanabilirsiniz.
 
-Kind hızlı bir şekilde cluster ortamı kurabileceğimiz ve testlerimizi yapabileceğimiz çok kullanışlı bir araç. Ayrıca kind ile birden fazla node ayağa kaldırabilirsiniz. Daha fazla bilgi için kind’ın kendi [dökümanını](htthttps://kind.sigs.k8s.io/docs/user/quick-start/#controlplane-ha) ziyaret edebilirsiniz.
+Kind hızlı bir şekilde cluster ortamı kurabileceğimiz ve testlerimizi yapabileceğimiz çok kullanışlı bir araç. Ayrıca kind ile birden fazla node ayağa kaldırabilirsiniz. Daha fazla bilgi için kind’ın kendi [dökümanını](https://kind.sigs.k8s.io/docs/user/quick-start/#controlplane-ha) ziyaret edebilirsiniz.
