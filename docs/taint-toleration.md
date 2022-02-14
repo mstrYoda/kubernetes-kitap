@@ -9,7 +9,7 @@ Tolerant ise pod'lara eklenir ve pod'un hangi taint’leri tolere ettiğini beli
 Peki bu özelliği hangi senaryolarda kullanabiliriz?
 
 - Belirli node'ları sadece belirli ekiplerin/uygulamaların kullanımına sunmak istersek
-- Belirli pod'lar sadece belirli donanımsal özelliklere sahip node'larda çalışsın istersek
+- Belirli pod'lar öncelikli tercihi belirli donanımsal özelliklere sahip node'larda çalışsın istersek
 - Bir node'da çalışan pod'ları belirli kurallara uymuyorsa o node'dan kaldırmak istersek
 
 Taint & Toleration özelliğinden faydalanabiliriz.
