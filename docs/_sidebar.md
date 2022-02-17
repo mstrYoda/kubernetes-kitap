@@ -49,7 +49,7 @@
         * [İhtiyaç ve Örnek Senaryolar](bolum-icerigi.md)
         * [NodeSelector Alanı](nodeselector.md)
         * [Taint ve Tolerant Kavramı](taint-toleration.md)
-        * [Node Affinity ve Pod Affinity Kavramı](affinity.md)
+        * [Node Affinity ve Pod Affinity Kavramı](affinity-anti-affinity.md)
 
 * Uygulama Kaynaklarının Konfigürasyonu
     * [ResourceQuata Objesi](resourcequata.md)
