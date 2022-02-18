@@ -27,3 +27,5 @@ spec:
   nodeSelector:
     region: region-1
 ```
+
+![NodeSelector](images/nodeselector.png)
