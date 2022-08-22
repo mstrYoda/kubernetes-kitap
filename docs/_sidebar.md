@@ -6,12 +6,14 @@
     * [Pod ve Container Kavramı](pod-container.md)
 
 * Kubernetes Node Elemanları
-    * [etcd](etcd.md)
-    * [api-server](api-server.md)
-    * [kubelet](kubelet.md)
-    * [kube-proxy](kube-proxy.md)
-    * [controller-manager](controller-manager.md)
-    * [scheduler](scheduler.md)
+    * [Control Plane Elemanları](control-plane.md)
+        * [api-server](control-plane?id=api-server.md)
+        * [etcd](control-plane?id=etcd.md)
+        * [controller-manager](control-plane?id=controller-manager.md)
+        * [scheduler](control-plane?id=scheduler.md)
+    * [Worker Node Elemanları](data-plane.md)
+        * [kubelet](data-plane?id=kubelet.md)
+        * [kube-proxy](data-plane?id=kube-proxy.md)
 
 * Development Ortamı Kurulumu
     * [**kind**](kind.md)

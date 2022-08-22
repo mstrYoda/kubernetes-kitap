@@ -17,12 +17,14 @@ Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
     * [Pod ve Container Kavramı](./docs/pod-container.md)
 
 * Kubernetes Node Elemanları
-    * [etcd](./docs/etcd.md)
-    * [api-server](./docs/api-server.md)
-    * [kubelet](./docs/kubelet.md)
-    * [kube-proxy](./docs/kube-proxy.md)
-    * [controller-manager](./docs/controller-manager.md)
-    * [scheduler](./docs/scheduler.md)
+    * [Control Plane Elemanları](control-plane.md)
+        * api-server
+        * etcd
+        * controller-manager
+        * scheduler
+    * [Worker Node Elemanları](data-plane.md)
+        * kubelet
+        * kube-proxy
 
 * Development Ortamı Kurulumu
     * [**kind**](./docs/kind.md)
@@ -56,11 +58,10 @@ Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
     * [Pod Preset](./docs/pod-preset.md)
     * [Static Pod](./docs/static-pod.md)
     * [Ephemeral Container](./docs/ephemeral-container.md)
-    * **Podların Çalışacağı Nodeları Belirleme**
-        * [İhtiyaç ve Örnek Senaryolar](./docs/bolum-icerigi.md)
-        * [NodeSelector Alanı](./docs/nodeselector.md)
-        * [Taint ve Tolerant Kavramı](./docs/taint-toleration.md)
-        * [Node Affinity ve Pod Affinity Kavramı](./docs/affinity.md)
+* **Podların Çalışacağı Nodeları Belirleme - Scheduling**
+    * [NodeSelector Alanı](./docs/nodeselector.md)
+    * [Taint ve Tolerant Kavramı](./docs/taint-toleration.md)
+    * [Node Affinity ve Pod Affinity Kavramı](./docs/affinity-anti-affinity.md)
 
 * Uygulama Kaynaklarının Konfigürasyonu
     * [ResourceQuata Objesi](./docs/resourcequata.md)
