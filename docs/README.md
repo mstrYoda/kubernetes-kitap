@@ -18,13 +18,13 @@ Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
 
 * Kubernetes Node Elemanları
     * [Control Plane Elemanları](control-plane.md)
-        * api-server
-        * etcd
-        * controller-manager
-        * scheduler
+        * [api-server](control-plane?id=api-server.md)
+        * [etcd](control-plane?id=etcd.md)
+        * [controller-manager](control-plane?id=controller-manager.md)
+        * [scheduler](control-plane?id=scheduler.md)
     * [Worker Node Elemanları](data-plane.md)
-        * kubelet
-        * kube-proxy
+        * [kubelet](data-plane?id=kubelet.md)
+        * [kube-proxy](data-plane?id=kube-proxy.md)
 
 * Development Ortamı Kurulumu
     * [**kind**](kind.md)
