@@ -138,3 +138,7 @@ Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
     * [kaniko - **kaniko**](./docs/kaniko.md)
     * [buildah - **buildah**](./docs/buildah.md)
     * [podman - **podman**](./docs/podman.md)
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=mstrYoda/kubernetes-kitap&type=Date)](https://star-history.com/#mstrYoda/kubernetes-kitap&Date)
