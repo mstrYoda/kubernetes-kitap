@@ -58,11 +58,10 @@ Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
     * [Pod Preset](pod-preset.md)
     * [Static Pod](static-pod.md)
     * [Ephemeral Container](ephemeral-container.md)
-    * **Podların Çalışacağı Nodeları Belirleme**
-        * [İhtiyaç ve Örnek Senaryolar](bolum-icerigi.md)
-        * [NodeSelector Alanı](nodeselector.md)
-        * [Taint ve Tolerant Kavramı](taint-toleration.md)
-        * [Node Affinity ve Pod Affinity Kavramı](affinity.md)
+* **Podların Çalışacağı Nodeları Belirleme - Scheduling**
+    * [NodeSelector Alanı](nodeselector.md)
+    * [Taint ve Tolerant Kavramı](taint-toleration.md)
+    * [Node Affinity ve Pod Affinity Kavramı](affinity-anti-affinity.md)
 
 * Uygulama Kaynaklarının Konfigürasyonu
     * [ResourceQuata Objesi](resourcequata.md)
