@@ -1,4 +1,4 @@
-Bazen, ilk başlatıldıklarında ek bir başlatma süresi gerektirebilecek eski uygulamalarla uğraşmanız gerekir. Bu tür durumlarda, liveness probu parametrelerini, böyle bir durumu düzenleyek ve kilitlenmelere hızlı tepkiden ödün vermeden ayarlamak zor olabilir. İşin püf noktası, aynı komutla, HTTP veya TCP kontrolüyle, failureThreshold * periodSeconds daha kötü durumdaki başlatma süresini kapsayacak kadar uzun bir başlangıç ​​araştırması kurmaktır.
+Bazen, ilk ayağa kaldırılmaya çalışıldıklarında ek bir başlatma süresi gerektirebilecek eski uygulamalarımız olabilir. Bu tür durumlarda, liveness probe parametrelerini, böyle bir durumu düşünerek ve yaşam döngüsünde hızlı tepkiden ödün vermeden ayarlamak zor olabilir. İşin püf noktası, aynı komutla, http, tcp veya exec kontrolüyle, failureThreshold * periodSeconds daha kötü durumdaki başlatma süresini kapsayacak kadar uzun bir Startup Probe kurmaktır.
 
 ```
 ports:
@@ -20,5 +20,6 @@ startupProbe:
   failureThreshold: 30
   periodSeconds: 10
 ```
+-Önemli bir not; yukarıdaki örnekte kurgulanan en başta tanımlı ports tanımı gRPC de desteklenmiyor.-
 
-Startup probu sayesinde, uygulamanın başlangıcını bitirmesi için maksimum 5 dakika (30 * 10 = 300s) olacaktır. Başlangıç ​​araştırması bir kez başarılı olduktan sonra, liveness probu konteyner kilitlenmelerine hızlı bir yanıt sağlamak için devreye girer. Startup probu hiçbir zaman başarılı olmazsa, konteyner 300 saniye sonra öldürülür ve yeniden başlatma politikası uygulanır.
+Startup probe sayesinde, uygulamanın başlangıcını bitirmesi için maksimum 5 dakika (30 * 10 = 300s) olacaktır. Startup probe bir kez başarılı olduktan sonra, liveness probe container yaşam döngüsünde hızlı bir yanıt sağlamak için devreye girer. Startup probe hiçbir zaman başarılı olmazsa, container 300 saniye sonra öldürülür ve yeniden başlatma politikası uygulanır.

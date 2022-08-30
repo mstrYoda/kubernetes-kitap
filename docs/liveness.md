@@ -1,3 +1,6 @@
+Health-check yöntemleri başlığı altında kısaca "olsa bazı nedenlerden dolayı -bu nedenler bellek sorunu, cpu kullanımı vb. olabilir- podda çalışan uygulamanız yanıt vermemesi durumunda Liveness Probe belirlediğiniz durumlar kontrolü ışığında podu yeniden başlatır." diye bahsetmiştik. Şimdi bunu hangi configuration ile nasıl yaptığına bakacağız.
+
+Aşağıdaki config örneğinde görüldüğü üzere sağlıklı olup olmadığını kontrol etmek için spec.containers.livenessProbe.httpGet.path yolunda belirtildiği adresin GET isteği sonucunda httpStatus 200 dönmesi beklenir. HttpStatus 200 gelmemesi durumunda hazır olmadığı düşünülür.
 ```
 apiVersion: v1
 kind: Pod
@@ -8,20 +11,72 @@ metadata:
 spec:
   containers:
   - name: liveness
-    image: k8s.gcr.io/liveness
-    args:
-    - /server
+    image: myApp
     livenessProbe:
       httpGet:
-        path: /healthz
+        path: /health
         port: 8080
-        httpHeaders:
-        - name: Custom-Header
-          value: Awesome
       initialDelaySeconds: 3
       periodSeconds: 3
 ```
 
-Yapılandırma dosyasında, Bölmenin tek bir konteynera sahip olduğunu görebilirsiniz. periodSeconds liveness probun 3 saniyede bir gerçekleşeceğini belirtir. initialDelaySeconds ilk probun gerçekleştirmeden önce 3 saniye beklemesi gerektiğini söyler. Konteyner da çalışan ve 8080 numaralı bağlantı noktasında dinleyen sunucuya bir HTTP GET isteği gönderir. Sunucunun /healthz yolunun işleyicisi bir başarı kodu döndürürse, konteyner canlı ve sağlıklı olarak değerlendirir. İşleyici bir hata kodu döndürürse, kubelet konteyneri öldürür ve yeniden başlatır.
+Exec ile yapılabilecek kontrol örneklerinden biri bu şekildedir. Pod düzgün bir şekilde çalışır ve sorun yaşamaz. index.html silerseniz podun restart etmeye başladığını görürsünüz. Sizde uygulamanın doğru çalıştığını doğrulayacak komut ile commandı güncelleyebilirsiniz.
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    test: liveness
+  name: liveness-exec
+spec:
+  containers:
+  - name: liveness
+    image: myApp
+    livenessProbe:
+      exec:
+        command:
+        - cat
+        - /usr/share/myApp/html/index.html
+      initialDelaySeconds: 5
+      periodSeconds: 5
+```
 
-200'den büyük veya eşit ve 400'den küçük herhangi bir kod başarıyı gösterir. Başka herhangi bir kod, başarısızlığı gösterir.
+TCP ile kontrolde kubelet sizin uygulamanıza belirtilen port ile bir soket açmaya çalışacaktır. Başarılı bir şekilde bağlantı kurabiliyorsa pod sağlıklı, kuramazsa arızalı kabul edilir.
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    test: liveness
+  name: liveness-tcp
+spec:
+  containers:
+  - name: liveness
+    image: myApp
+    ports:
+    - containerPort: 8080
+    livenessProbe:
+      tcpSocket:
+        port: 8080
+      initialDelaySeconds: 15
+      periodSeconds: 20
+```
+
+gRPC örneği de bu şekilde oluşturulabilir. Port olması health-check yöntemleri başlığı altında belirtildiği gibi zorunludur.
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: etcd-with-grpc
+spec:
+  containers:
+  - name: etcd
+    image: myApp
+    command: ["/agnhost", "grpc-health-checking"]
+    ports:
+    - containerPort: 8080
+    livenessProbe:
+      grpc:
+        port: 8080
+      initialDelaySeconds: 10
+```
