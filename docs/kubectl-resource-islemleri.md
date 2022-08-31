@@ -34,7 +34,7 @@ Kubectl apply ile clustera deploy ettiğimiz değişiklikleri geri almak isterse
 
 # Resource Listelemek
 
-Kubectl ile herhangi bir resource'u listelemek, apply edilmiş yaml içeriğini görmek veya resource'ların sayısını öğrenmek istediğimiz kullanabileceğimiz bazı komutlar:
+Kubectl ile herhangi bir resource'u listelemek, apply edilmiş yaml içeriğini görmek veya resource'ların sayısını öğrenmek istediğimizde kullanabileceğimiz bazı komutlar:
 
 `kubectl get <api-resource>`
 
