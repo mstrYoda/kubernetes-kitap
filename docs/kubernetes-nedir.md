@@ -10,7 +10,7 @@ Kubernetes (k8s) Google tarafından open-source olarak geliştirilen, containeri
 
 - ***Dinamik Storage Yönetimi***: Data persist etmemiz gereken uygulamalar için dinamik olarak storage mount edebilmemizi sağlar. Bu storage çalıştığımız node üzerinde local storage veya bir cloud provider tarafında kullanabileceğimiz storage olabilir.
 
-- ***Otomatize Rollout & Rollback***: Uygulamanızın kaç instance ile çalışacağınız istediğinizi belirtebilirsiniz. Bu sayede kubernetes yeni bir deployment yaptığınız zaman bu süreci sizin için otomatize eder.
+- ***Otomatize Rollout & Rollback***: Uygulamanızın kaç instance ile çalışmasını istediğinizi belirtebilirsiniz. Bu sayede kubernetes yeni bir deployment yaptığınız zaman bu süreci sizin için otomatize eder.
 
 - ***Healthcheck***: Uygulamalarınız için healthcheck tanımlamaları yaparak belirttiğiniz kurallara uymayan uygulamaların çalışmamasını veya çalışma zamanında hata alması durumunda uygulamanın restart edilmesini kubernetes bizlere sağlar.
 
