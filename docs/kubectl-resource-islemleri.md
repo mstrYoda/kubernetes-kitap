@@ -30,6 +30,25 @@ Kubectl apply ile clustera deploy ettiğimiz değişiklikleri geri almak isterse
 
 # Diff
 
+  Kubernates GA(General Availability) özelliğiyle beraber `kubectl diff` komutunu piyasaya sürmüştür.
+  
+APIServer `dry-run` nesnenin(obje) nasıl işleneceğini görmemiz için uygundur ancak nesne büyükse tam olarak neyin değiştiğini  belirlemek pek de kolay olmayabilir.
+
+Diff komutu mevcut canlı nesnesi ile yeni özellik nesnesi arasında ki farkı algılamamıza yardımcı olur.
+
+Özet olarak   `kubectl diff` nesne üzerinde yapılan değişikliğe odaklanır bunun yanı sıra sunucunun bunları nasıl birleştirdiğine, değişime uğrayan webhooklarının çıktıyı nasıl etkilediğine odaklanmayı kolaylaştırır.
+
+##### Nasıl Kullanılmalı
+- `kubectl diff` komutu `kubectl apply`: `kubectl diff -f some-resources.yaml` mümkün olduğunca benzer olmalıdır.(.yaml dosyasında ki kaynaklar için bir fark gösterecektir.)
+- Eğer diff komutunu seçmek isterseniz `KUBECTL_EXTERNAL_DIFF`ortam değişkenlerini kullanabilirsiniz.
+- Varsayılan diff komut değişkeninin yolu **-u (birleşik)**  ve **-N (yeni dosyaları boş olarak değerlendir)** seçenekleriyle çalıştırılacaktır.
+
+`KUBECTL_EXTERNAL_DIFF=meld kubectl diff -f some-resources.yaml`
+
+##### Not
+`kubectl apply --server-dry-run` v1.18'de kaldırılmıştır.
+Sunucu tarafta(Server-side) **dry-run** kullanmak için `kubectl apply` ve diğer alt komutlarda `--dry-run=server`  bayrağı kullanılmalıdır.
+
 
 
 # Resource Listelemek
