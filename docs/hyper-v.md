@@ -65,7 +65,7 @@ Cluster için 1 adet Ana ve 1 adet İşçi düğüm kuracağız. Her adım için
 ![1 j2mTdlZN3kbjMgog01W9fQ.png](https://miro.medium.com/max/700/1*j2mTdlZN3kbjMgog01W9fQ.png)
 
 
-## 1 - Küme Kurulumu <a name="iscidugumayarlari"></a>
+## 1 - Küme Kurulumu <a name="kumekurulumu"></a>
 
 ### 1.1 - Sunucu Paket Güncelleme <a name="sunucupaket"></a>
 Her iki sunucuda da aşağıdaki kod parçacığını çalıştırarak, paketlerin güncellenmesini sağlıyoruz.
@@ -187,7 +187,7 @@ kubectl get nodes
 ```
 ![1 lcFBAYPXscZ1IkAqiDW2Hg.png](https://miro.medium.com/max/700/1*lcFBAYPXscZ1IkAqiDW2Hg.png)
 
-### 1.6 Koza(Pod) Ağ Yapısı Oluşturulması <a name="kozapodagayarlari"></a>
+### 1.6 - Koza(Pod) Ağ Yapısı Oluşturulması <a name="kozapodagayarlari"></a>
 
 Öncelikle Pod'un türkçeye tam olarak nasıl çevirileceğini bilmiyorum. Ben bu dökümanda Koza olarak bahsettim. Ama daha anlamlı veya tam anlamına karşılık gelen kelime olursa güncelleyebiliriz.
 
@@ -204,11 +204,11 @@ sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Do
 ```
 ![1 K0p5NUnDSZp90qOnxFZXYw.png](https://miro.medium.com/max/700/1*K0p5NUnDSZp90qOnxFZXYw.png)
 
-## 2 Küme Kurulumu Sonrası Dağıtım Örneği <a name="dagitimornegi"></a>
+## 2 - Küme Kurulumu Sonrası Dağıtım Örneği <a name="dagitimornegi"></a>
 
 Kubernetes kümesi kurulumu tamamlandığına göre artık ilk örneğimizi gerçekleştirebiliriz. Ben bu örnekte Nginx dağıtımı yapmak istiyorum.
 
-### 2.1 Nginx Dağıtımı <a name="nginxdagitimi"></a>
+### 2.1 - Nginx Dağıtımı <a name="nginxdagitimi"></a>
 
 Aşağıdaki komutları takip ederek ilk dağıtımımızı yapalım;
 
