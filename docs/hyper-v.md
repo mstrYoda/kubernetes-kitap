@@ -1,46 +1,47 @@
 # Hyper-V Üzerinde K8S Kümesi(Cluster)
 
-## Ön Bilgi
-K8s küme kurulumu anlatımında ingilizce terimlerin türkçe terimleri ile anlatım yapılacak. İnternette farklı kaynak ararken zorlanılmaması için türkçe olarak kullanılan terimlerin ingilizce karşılıkları aşağıda verilmiştir.
+# Ön Bilgi
+K8s küme kurulumu anlatımında ingilizce terimlerin türkçe terimleri ile anlatım yapıldı. İnternette farklı kaynak ararken zorlanılmaması için türkçe olarak kullanılan terimlerin ingilizce karşılıkları aşağıda verilmiştir.
 
 - Küme  = Cluster
 - Düğüm = Node
 - Ana   = Master
 - İşçi  = Worker
 - Koza  = Pod
-## Hyper-V () 
 
-Hyper-V, Microsoft Hyper-V, Viridian kod adındaki ve önceleri Windows Sunucu Sanallaştırma olarak bilinen, x64 bilgisayarlar için hypervisor tabanlı bir sanallaştırma sistemidir. Birden fazla sunucu rolünü tek bir fiziksel ana makinede çalışan ayrı sanal makineler olarak birleştirerek sunucu donanımı yatırımlarını iyileştirmek için bir araç sağlar. Hyper-V ayrıca, Windows haricinde Linux gibi işletim sistemleri de dahil olmak üzere birden fazla işletim sistemini verimli bir şekilde tek bir sunucuda çalıştırmak ve 64-bit bilgi işlemin gücünden faydalanmak için de kullanılabilir.Windows Server 2008'in belirli x64 sürümleriyle birlikte Hyper-V'nin bir betası sevk edilmiş ve kesinleşmiş sürüm 26 Haziran 2008'de piyasaya çıkmıştır. Yeni çıkacak olan Windows Server 2012® Hyper-V® ile de birden fazla işletim sisteminin paralel olarak aynı sunucu üzerinde çalıştırılmasını sağlamaktadır. 
+# Hyper-V  
+
+Hyper-V, Microsoft Hyper-V, Viridian kod adındaki ve önceleri Windows Sunucu Sanallaştırma olarak bilinen, x64 bilgisayarlar için hypervisor tabanlı bir sanallaştırma sistemidir. Birden fazla sunucu rolünü tek bir fiziksel ana makinede çalışan ayrı sanal makineler olarak birleştirerek sunucu donanımı yatırımlarını iyileştirmek için bir araç sağlar. Hyper-V ayrıca, Windows haricinde Linux gibi işletim sistemleri de dahil olmak üzere birden fazla işletim sistemini verimli bir şekilde tek bir sunucuda çalıştırmak ve 64-bit bilgi işlemin gücünden faydalanmak için de kullanılabilir.Windows Server 2008'in belirli x64 sürümleriyle birlikte Hyper-V'nin bir betası sevk edilmiş ve kesinleşmiş sürüm 26 Haziran 2008'de piyasaya çıkmıştır. Yeni çıkacak olan Windows Server 2012® Hyper-V® ile de birden fazla işletim sisteminin paralel olarak aynı sunucu üzerinde çalıştırılmasını sağlamaktadır.  
 {Kaynak: wikipedia.com}
 
-## Kurulum için Genel Bilgilendirme:
+# Kurulum için Genel Bilgilendirme:
 
-### Gereksinimler:
+## Gereksinimler:
 
 - Hazır Hyper-V
 - Docker
 - Kubectl
 - Kubeadm
-### Kurulum Özet
+## Kurulum Özet
 Cluster için 1 adet Ana ve 1 adet İşçi düğüm kuracağız. Her adım için kodlar ve kod çıktıları ekran görüntüleri ile desteklenecek. Kuruluma geçmeden önce ortamınızda Hyper-V kurulu olması gerekmektedir.
 
 ## Hyper-V Üzerinde Sunucuların Ayarlanması:
 
-## Ana Node Ayarları:
+### Ana Node Ayarları
 
 İşletim Sistemi: Ubuntu 20.04
 
 ![1 5bBGGCJnSl5IVLxi5lyVMw.png](https://miro.medium.com/max/700/1*5bBGGCJnSl5IVLxi5lyVMw.png)
 
-## İşçi Node Ayarları:
+### İşçi Node Ayarları:
 İşletim Sistemi: Ubuntu 20.04
 
 ![1 j2mTdlZN3kbjMgog01W9fQ.png](https://miro.medium.com/max/700/1*j2mTdlZN3kbjMgog01W9fQ.png)
 
 
-### 1 Küme Kurulumu
+## 1 - Küme Kurulumu
 
-#### 1.1 Sunucu Paket Güncelleme
+### 1.1 - Sunucu Paket Güncelleme
 Her iki sunucuda da aşağıdaki kod parçacığını çalıştırarak, paketlerin güncellenmesini sağlıyoruz.
 
 ```bash
@@ -116,11 +117,11 @@ Yukarıdaki komutu çalıştırdıktan sonra aşağıdaki çıktıyı almasını
 ```bash
 $ sudo swapoff -a
 ```
-## 1.4 - Ana Sunucu Ayarları
+### 1.4 - Ana Sunucu Ayarları
 
 Önce aşağıdaki adımlar ile Ana Sunucumuzda gerekli ayarları yapıp sonrasında İşçi Sunucumuz'a geçeceğiz.
 
-### 1.4.1 - IP Bloğu Ayarlanması
+#### 1.4.1 - IP Bloğu Ayarlanması
 
 Kubernetes kümesi için IP bloğu tanımlamamız gerekiyor. Aşağıdaki komut ile bunu sağlayabiliriz. Siz burada kendi bloğunuzu tanımlayabilirsiniz;
 
@@ -130,17 +131,17 @@ sudo kubeadm init — pod-network-cidr=10.244.0.0/16
 
 ![1 Ug88fmeq9yOdj5kDUoZCvQ.png](https://miro.medium.com/max/700/1*Ug88fmeq9yOdj5kDUoZCvQ.png)
 
-### 1.4.2 - Kubeconfig Dosya Yolu Değişikliği
+#### 1.4.2 - Kubeconfig Dosya Yolu Değişikliği
 Kubernetes kümemize kubectl ile (veya geliştirdiğimiz bir uygulama tarafından) erişmek istediğimizde, küme bilgilerini barındıracağımız bir yere ihtiyacımız var. Kubeconfig tam bu noktada karşımıza çıkıyor. Varsayılan olarak ~/.kube/config dosya yolunda yer alır fakat istersek kubectl'e farklı dosya yollarında kubeconfig belirtebiliriz. Aşağıdaki komut ile bunu sağlıyoruz.
 
 ```bash
 export KUBECONFIG=/etc/kubernetes/admin.conf
 ```
-## 1.5 - İşçi Sunucu Ayarları
+### 1.5 - İşçi Sunucu Ayarları
 
 Ana Sunucumuzda gerekli ayarlamaları yaptık. Sıra işçi rolü üstlenen sunucumuzda gerekli ayarlamaları yapmakta. 
 
-### 1.5.1 - İşçi Sunucu Ana Sunucu'ya Katılması
+#### 1.5.1 - İşçi Sunucu Ana Sunucu'ya Katılması
 
 Ana sunucu kurulumunda, "1.4.1 - IP Bloğu Ayarlanması" adımında ekranınızda aşağıdaki gibi bir komut bloğu çıktısı olmalı,
 
@@ -160,7 +161,7 @@ kubectl get nodes
 ```
 ![1 lcFBAYPXscZ1IkAqiDW2Hg.png](https://miro.medium.com/max/700/1*lcFBAYPXscZ1IkAqiDW2Hg.png)
 
-## 1.6 Koza(Pod) Ağ Yapısı Oluşturulması
+### 1.6 Koza(Pod) Ağ Yapısı Oluşturulması
 
 Öncelikle Pod'un türkçeye tam olarak nasıl çevirileceğini bilmiyorum. Ben bu dökümanda Koza olarak bahsettim. Ama daha anlamlı veya tam anlamına karşılık gelen kelime olursa güncelleyebiliriz.
 
@@ -181,7 +182,7 @@ sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Do
 
 Kubernetes kümesi kurulumu tamamlandığına göre artık ilk örneğimizi gerçekleştirebiliriz. Ben bu örnekte Nginx dağıtımı yapmak istiyorum.
 
-## 2.1 Nginx Dağıtımı
+### 2.1 Nginx Dağıtımı
 
 Aşağıdaki komutları takip ederek ilk dağıtımımızı yapalım;
 
