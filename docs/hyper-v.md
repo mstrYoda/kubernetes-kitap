@@ -1,15 +1,34 @@
-# Hyper-V Üzerinde K8S Cluster
+# Hyper-V Üzerinde K8S Kümesi(Cluster)
 
-## K3S (Lightweight Kubernetes) 
+## Ön Bilgi
+K8s küme kurulumu anlatımında ingilizce terimlerin türkçe terimleri ile anlatım yapılacak. İnternette farklı kaynak ararken zorlanılmaması için türkçe olarak kullanılan terimlerin ingilizce karşılıkları aşağıda verilmiştir.
 
-K3S, 2019 yılında açık kaynak olarak rancher tarafından piyasaya sürüldü. K3S, 100mb’ın altında bir binary dosyası olarak tasarlanmıştır. Ayrıca sertifikalı bir Kubernetes aracıdır ve cross platform çalışabilme özelliğine sahiptir.
-K3S hafifliği sayesinde çok düşük sistemlerde bile kubernetes cluster’ı kurabilmemize olanak sağlıyor. K3S önerilen sistem gereksinimleri aşagıdadır.;      
-- Linux 3.10   
-- 512 MB RAM (sunucu)   
-- 75 MB RAM (node)    
-- 200 MB disk alanı    
+- Küme = Cluster
+- Düğüm = Node
+- Ana = Master
+- İşçi = Worker
 
-## Linux Kurulum:
+## Hyper-V () 
+
+Hyper-V, Microsoft Hyper-V, Viridian kod adındaki ve önceleri Windows Sunucu Sanallaştırma olarak bilinen, x64 bilgisayarlar için hypervisor tabanlı bir sanallaştırma sistemidir. Birden fazla sunucu rolünü tek bir fiziksel ana makinede çalışan ayrı sanal makineler olarak birleştirerek sunucu donanımı yatırımlarını iyileştirmek için bir araç sağlar. Hyper-V ayrıca, Windows haricinde Linux gibi işletim sistemleri de dahil olmak üzere birden fazla işletim sistemini verimli bir şekilde tek bir sunucuda çalıştırmak ve 64-bit bilgi işlemin gücünden faydalanmak için de kullanılabilir.Windows Server 2008'in belirli x64 sürümleriyle birlikte Hyper-V'nin bir betası sevk edilmiş ve kesinleşmiş sürüm 26 Haziran 2008'de piyasaya çıkmıştır. Yeni çıkacak olan Windows Server 2012® Hyper-V® ile de birden fazla işletim sisteminin paralel olarak aynı sunucu üzerinde çalıştırılmasını sağlamaktadır. 
+{Kaynak: wikipedia.com}
+
+## Kurulum için Genel Bilgilendirme:
+
+### Gereksinimler:
+
+- Hazır Hyper-V
+- Docker
+- Kubectl
+- Kubeadm
+### Kurulum Özet
+Cluster için 1 adet Ana ve 1 adet İşçi düğüm kuracağız. Her adım için kodlar ve kod çıktıları ekran görüntüleri ile desteklenecek. Kuruluma geçmeden önce ortamınızda Hyper-V kurulu olması gerekmektedir.
+
+## Hyper-V Üzerinde Sunucuların Ayarlanması:
+
+## Ana Node Ayarları:
+
+![1 5bBGGCJnSl5IVLxi5lyVMw.png](https://miro.medium.com/max/700/1*5bBGGCJnSl5IVLxi5lyVMw.png)
 
 ### Gereksinimler:  
 
