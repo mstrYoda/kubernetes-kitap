@@ -3,11 +3,11 @@
 ## Ön Bilgi
 K8s küme kurulumu anlatımında ingilizce terimlerin türkçe terimleri ile anlatım yapılacak. İnternette farklı kaynak ararken zorlanılmaması için türkçe olarak kullanılan terimlerin ingilizce karşılıkları aşağıda verilmiştir.
 
-- Küme = Cluster
+- Küme  = Cluster
 - Düğüm = Node
-- Ana = Master
-- İşçi = Worker
-
+- Ana   = Master
+- İşçi  = Worker
+- Koza  = Pod
 ## Hyper-V () 
 
 Hyper-V, Microsoft Hyper-V, Viridian kod adındaki ve önceleri Windows Sunucu Sanallaştırma olarak bilinen, x64 bilgisayarlar için hypervisor tabanlı bir sanallaştırma sistemidir. Birden fazla sunucu rolünü tek bir fiziksel ana makinede çalışan ayrı sanal makineler olarak birleştirerek sunucu donanımı yatırımlarını iyileştirmek için bir araç sağlar. Hyper-V ayrıca, Windows haricinde Linux gibi işletim sistemleri de dahil olmak üzere birden fazla işletim sistemini verimli bir şekilde tek bir sunucuda çalıştırmak ve 64-bit bilgi işlemin gücünden faydalanmak için de kullanılabilir.Windows Server 2008'in belirli x64 sürümleriyle birlikte Hyper-V'nin bir betası sevk edilmiş ve kesinleşmiş sürüm 26 Haziran 2008'de piyasaya çıkmıştır. Yeni çıkacak olan Windows Server 2012® Hyper-V® ile de birden fazla işletim sisteminin paralel olarak aynı sunucu üzerinde çalıştırılmasını sağlamaktadır. 
@@ -28,184 +28,182 @@ Cluster için 1 adet Ana ve 1 adet İşçi düğüm kuracağız. Her adım için
 
 ## Ana Node Ayarları:
 
+İşletim Sistemi: Ubuntu 20.04
+
 ![1 5bBGGCJnSl5IVLxi5lyVMw.png](https://miro.medium.com/max/700/1*5bBGGCJnSl5IVLxi5lyVMw.png)
 
-### Gereksinimler:  
+## İşçi Node Ayarları:
+İşletim Sistemi: Ubuntu 20.04
 
-- Windows, Linux veya MacOS ortamı
-- Docker
-- Kubectl
-- K3D
+![1 j2mTdlZN3kbjMgog01W9fQ.png](https://miro.medium.com/max/700/1*j2mTdlZN3kbjMgog01W9fQ.png)
 
-### 1.1 - Docker Kurulumu   
-Docker kurulumunu hızlı bir şekilde yapmak için rancher tarafından hazırlanan script’i kullanabilirsiniz veya bu adresten docker kurulumunu uygun ortamınıza göre yapabilirsiniz.   
+
+### 1 Küme Kurulumu
+
+#### 1.1 Sunucu Paket Güncelleme
+Her iki sunucuda da aşağıdaki kod parçacığını çalıştırarak, paketlerin güncellenmesini sağlıyoruz.
+
 ```bash
-$ curl https://releases.rancher.com/install-docker/19.03.sh | sh
+$ apt-get update -y && apt-get upgrade -y
 ```
+Her iki sunucunuzdada aşağıdaki gibi kod çıktısı ile karşılaşmalısınız;
 
-### 1.2 - Kubectl Kurulumu    
-Kubernetes API ile haberleşmek için Kubectl kurmamız gerekiyor, bunuda aşağıdaki adımları takip ederek kolaylıkla yapabilirsiniz.
+![1 B0oA7UlIuS1Gjctp1rRbIQ.png](https://miro.medium.com/max/700/1*B0oA7UlIuS1Gjctp1rRbIQ.png)
+
+### 1.2 - Docker Kurulumu 
+Docker kurulumu için aşağıdaki komutları çalıştırarak Docker resmi komut dosyasını çalıştırarak kuruyoruz  
+
 ```bash
-$ curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
-```
-```
-$ chmod +x ./kubectl
-```
-```
-$ sudo mv ./kubectl /usr/local/bin/kubectl
+$ curl -fsSL https://get.docker.com -o get-docker.sh
+$ sudo sh get-docker.sh
 ```
 
-Tüm bu işlemlerden sonra aşağıdaki komut ile kubectl versiyon kontrolünü yapabilirsiniz.
+Yukarıdaki işlemleri her iki sunucunuzdada çalıştırdıktan sonra aşağıdaki komut ile servisin çalışıp çalışmadığını kontrol edebilirsiniz.
 
-```
-kubectl version
-```
-
-### 1.3 - K3D Kurulumu
-
-K3D kurulumu basit, yapmanız gereken terminale aşağıdaki komutu girmek. Dilerseniz [bu](https://k3d.io/#installation) adresten kurulum adımlarını kendi ortamınıza göre yapabilirsiniz.
-
-```
-$ wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
-```
-![1_I0hNdBXgOgL-VI9KOCHHRA.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1606601738166/aYybiM3u1.png)
-
-Sizde yukarıdaki resimdeki gibi bir çıktı aldıysanız kurulumu başarılı bir şekilde yaptınız demektir. İsterseniz versiyon kontrolü yaparak kurulumunuzu doğrulayabilirsiniz, bunun için terminalinize aşağıdaki komutu girmeniz gerekiyor.
-
-Versiyon kontrolü için bu komutu girin:
-```
-$ k3d --verison
+```bash
+$ systemctl status docker
 ```
 
-## 1.4 K3D Komutları
-### Cluster Komutları:
-### 'k3d cluster' komutu ile:
-- 'k3d cluster create [cluster name]' ile yeni bir cluster oluşturulabilir.
-- 'k3d cluster delete [cluster name]' ile cluster silebilirsiniz.    
-  Cluster ismi yerine -a parametresi ile toplu seçim yapabilirsiniz.
-- 'k3d cluster list' ile clusterlarınızı listeleyebilirsiniz.
-- 'k3d cluster start [cluster name]' ile clusterlarınızı başlatabilirisniz. '-a' parametresi burada da geçerli.
-- 'k3d cluster stop [cluster name]' ile clusterlarınızı durdurabilirsiniz. '-a' parametresi kullanımı geçerlidir.
+Ana Sunucu
+![1 uEnKXv0iDIuQSVOshjotYQ.png](https://miro.medium.com/max/700/1*uEnKXv0iDIuQSVOshjotYQ.png)
 
-### 'k3d node' komutu ile:
-- 'k3d node create [node name]' ile node oluşturabilirsiniz.
-- 'k3d node delete [node name]' ile node silebilirsiniz. '-a' parametresi geçerlidir.
-- 'k3d node list' ile nodelarınızı listeleyebilirsiniz.
-- 'k3d node start [node name]' ile nodelarınızı başlatabilirsiniz. '-a' parametresi geçerlidir.
-- 'k3d node stop [node name]' ile nodelarınızı durdurabilirsiniz. '-a' parametresi geçerlidir.
+İşçi Sunucu
+![1 67-WmTZQ4AgLFrVJQZ0L1w.png](https://miro.medium.com/max/700/1*67-WmTZQ4AgLFrVJQZ0L1w.png)
 
-## 1.5 K3D ile Cluster Kurulumu
-Artık cluster kurulumuna geçebiliriz. Terminalinize aşağıdaki resimde oluşturduğum gibi sizde kendi oluşturduğunuz name ile cluster oluşturmaya başlayabilirsiniz.
+### 1.3 - Kubectl ve Kubeadm Kurulumu    
+Kubernetes ortamınıza bağlanmak, yönetmek kubectl'i kullanıyoruz. Kubernetes API ile haberleşerek bu işlemleri yapabiliyoruz.
 
+Kubeadm, kubernetes kümesinin kurulması, upgrade edilmesi gibi işlevleri sağlayan Kubernetes tarafından geliştirilmiş bir araçtır.
+
+```bash
+$ sudo apt-get install -y apt-transport-https ca-certificates curl
 ```
-$ k3d cluster create [NAME]
-``` 
-
-![1_H-2eVT95AM0j-ff9a34GXA.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1606601983901/Hp8F2HXiU.png)
-
-İlk cluster kurulumunda yaklaşık 150–200mb boyutunda docker image pull etmesi gerektiği için kurulum süresi internet hızınıza göre biraz zaman alabilir ama bu image’leri silmediğiniz sürece cluster kurulumunuz çok kısa sürecektir.
-
-![1_OJ79GPbAi2DzdK12tzGeSg.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1606602003681/VK_4Us4Bb.png)
-
-Resimdeki komut ile oluşturduğunuz cluster’ları ve durumlarını görebilirsiniz.
-
-Bu şekilde eğer uzak bir sunucuya k3d kurulumu yapıp cluster’ı bu ortamda oluşturduysanız bir uygulama deploy ettiğiniz zaman buna erişemezsiniz. Çünkü herhangi bir port’a izin vermediğimiz için sadece cluster içinden erişime açık olacaktır. Oluşturduğunuz cluster’ı aşağıdaki komut ile silebilirsiniz. Sonraki adımda uygulamalarımıza nasıl erişebiliriz buna değineceğim.
-
+```bash
+$ sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
 ```
-$ k3d cluster delete -a --> Tüm cluster'ları siler
-$ k3d cluster delete [name] --> Belirtilen cluster'ı siler
-``` 
-
-# 2. Servislere Erişmek
-Kind yazımda kind’ın henüz çok yeni olduğunu bir takım sorunlarının olduğunu söylemiştim, bunlardan biriside eğer kind’ı local ortamımıza değilde uzak bir sunucuya kurduysak port açmanın meşakatli bir iş olmasıydı. Elle tek tek port açmamız gerekiyordu ve çalışan bir cluster’da yeni bir açılmamış port ihtiyacımız olduğu takdirde cluster’ı silip tekrar config dosyasını ayarlayıp ayağa kaldırmamız gerekiyordu. K3D kullanırkende öncesinde port açmamız gerekiyor fakat bunun için bize bir çok yol sunmakta, ister node-port olarak istersek de Load Balancer aracılığı ile uygulamalarımıza erişebiliyoruz.
-
-## 2.1 K3D NodePort Ayarları
-Kind yazısında da belirttiğimiz gibi, port açmak için elle tek tek portları config dosyasına girmemiz gerekiyordu ve çalışan cluster’da yeni bir pod ihtiyacımız doğduğunda cluster’ı silip tekrar ayağa kaldırmamız gerekiyordu.
-K3D bu noktada Kind’dan ayrılıyor çünkü k3d ile port açmak için belli bir port aralığını açmasını söyleyebiliyoruz. Hemen aşağıdaki örnek ile anlatmaya devam edeyim.
-
+```bash
+$ echo “deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main” | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
-$ k3d cluster create [NAME] -p "30000-30100:30000-30100@server[0]"
-``` 
-
-Yukarıdaki komutta yeni bir parametre ekledik “-p” docker kullananlar bu komutu sık sık kullanmıştır -p(publish) komutu ile host-container portu açabiliyoruz. Yukarıda da bu işlemi yaptık 30000–30100 aralığını hem host tarafında hemde container tarafında açmasını söylüyorum. (Kubernetes default node port aralığı: 30000–32767)
-
-Şimdi yukarda yaptığımız nginx uygulamasını bu sefer nodeport açarak yapalım demo-nodeport.yaml isimli bir dosya oluşturun ve aşağıdaki kodu içerisine ekleyip kaydedin.
-
+```bash
+$ sudo apt-get install -y kubelet kubeadm kubectl
 ```
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: demo
-  labels:
-    app: demo
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: demo
-  template:
-    metadata:
-      labels:
-        app: demo
-    spec:
-      containers:
-      - name: demo
-        image: nginx
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: demo
-spec:
-  selector:
-    app: demo
-  type: NodePort
-  ports:
-  - name: node-port
-    port:  80
-    nodePort: 30050
-``` 
-
-Yukardaki yaml dosyası ile deployment ve service yaratıyoruz. NodePort için 30050 adresini kullanacağım ben siz de açtığınız aralıktan bir port belirleyip belirlediğiniz port üzerinden uygulamaya erişebilirsiniz. Şimdi demo-nodeport.yaml dosyasını çalıştıralım.
-
+Yukarıdaki adımda “No apt package “kubeadm”, but there is a snap with that name.” hatası alırsanız, aşağıdaki komut ile çözebilirsiniz.
+```bash
+$ sudo apt-add-repository “deb http://apt.kubernetes.io/ kubernetes-xenial main”
 ```
-$ kubectl create -f demo-nodeport.yaml
-``` 
-![1_S9EdQVJCSfcP1W5gTkfhVQ.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1606602334964/ZgC69K0I6.png)
+Yukarıdaki komutu çalıştırdıktan sonra ve kurulumlarda herhangi bir hata almadığınızı varsayarak devam ediyoruz.
 
-Sorunsuz bir şekilde pod’unuz ve servisiniz oluşturulduysa tarayıcınızdan uygulamaya erişebilirsiniz. (IP:NODEPORT)
-
-![1_4CJGzHLx_5AlDM6FlA-AYw.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1606602348006/sIUt1Y4fd.png)
-
-
-# 3. Multi Node Cluster Kurulumu
-K3D ile birden fazla node’a sahip cluster da kurabilirsiniz. Biz 3 node’lu bir cluster kurulumu yapalım ve daha sonra node komutu ile çalışan cluster’a ek olarak 1 node daha ekleyelim öncelikle aşağıdaki komut ile K3D’ye 3 node’luk bir cluster kurmasını söylüyoruz.
-
-
+```bash
+$ sudo apt-mark hold kubelet kubeadm kubectl
 ```
-$ k3d cluster create [NAME] --servers 3
-``` 
+Sunucularınızda son durum aşağıdaki gibi olmalı;
 
-Node’lar oluştuktan sonra aşağıdaki komut’lar ile node’larımızın durumunu görebiliriz.
+Ana Sunucu
+![1 zDvjiuFnZvqfeTb7Qw2xvQ.png](https://miro.medium.com/max/700/1*zDvjiuFnZvqfeTb7Qw2xvQ.png)
 
+İşçi Sunucu
+![1 67-WmTZQ4AgLFrVJQZ0L1w.png](https://miro.medium.com/max/700/1*Gd-Us6c_Pml1kXAs_jNbMg.png)
+
+Versiyon kontrolü için aşağıdaki kodu çalıştırıyoruz;
+
+```bash
+$ kubeadm version
 ```
-[K3D İLE KONTROL ETME]
-$ k3d cluster list
-``` 
+Yukarıdaki komutu çalıştırdıktan sonra aşağıdaki çıktıyı almasınız. Eğer farklı bir çıktı aldıysanız kurulum adımlarında bir hata almış olmalısınız lütfen yukarıya dönüp kontrol ediniz.
 
+###Swap'ı kapatalım;
+
+```bash
+$ sudo swapoff -a
 ```
-[KUBECTL İLE KONTROL ETME]
-$ kubectl get node
-``` 
+## 1.4 - Ana Sunucu Ayarları
 
-![1_pTu5-ZDHaJIUUOWanRQlQg.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1606602480490/zIc16R4Gl.png)
+Önce aşağıdaki adımlar ile Ana Sunucumuzda gerekli ayarları yapıp sonrasında İşçi Sunucumuz'a geçeceğiz.
 
+### 1.4.1 - IP Bloğu Ayarlanması
 
-## 3.1 Node Ekleme
-Node’larımız başarılı bir şekilde oluştu ihtiyaca göre yeni bir node eklemek istersen ne yapmamız gerekiyor peki? Çok kolay bir şekilde aşağıdaki komut ile az önce oluşturduğumuz cluster’a node ekleyebiliriz.
+Kubernetes kümesi için IP bloğu tanımlamamız gerekiyor. Aşağıdaki komut ile bunu sağlayabiliriz. Siz burada kendi bloğunuzu tanımlayabilirsiniz;
 
+```bash
+sudo kubeadm init — pod-network-cidr=10.244.0.0/16
 ```
-$ k3d create node new-node --cluster [CLUSTER-NAME] --role server
-``` 
 
-![1_zDySbpHAPpbWWLkPWaEvEg.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1606602516698/g_Ko8gFAa.png)
+![1 Ug88fmeq9yOdj5kDUoZCvQ.png](https://miro.medium.com/max/700/1*Ug88fmeq9yOdj5kDUoZCvQ.png)
+
+### 1.4.2 - Kubeconfig Dosya Yolu Değişikliği
+Kubernetes kümemize kubectl ile (veya geliştirdiğimiz bir uygulama tarafından) erişmek istediğimizde, küme bilgilerini barındıracağımız bir yere ihtiyacımız var. Kubeconfig tam bu noktada karşımıza çıkıyor. Varsayılan olarak ~/.kube/config dosya yolunda yer alır fakat istersek kubectl'e farklı dosya yollarında kubeconfig belirtebiliriz. Aşağıdaki komut ile bunu sağlıyoruz.
+
+```bash
+export KUBECONFIG=/etc/kubernetes/admin.conf
+```
+## 1.5 - İşçi Sunucu Ayarları
+
+Ana Sunucumuzda gerekli ayarlamaları yaptık. Sıra işçi rolü üstlenen sunucumuzda gerekli ayarlamaları yapmakta. 
+
+### 1.5.1 - İşçi Sunucu Ana Sunucu'ya Katılması
+
+Ana sunucu kurulumunda, "1.4.1 - IP Bloğu Ayarlanması" adımında ekranınızda aşağıdaki gibi bir komut bloğu çıktısı olmalı,
+
+```bash
+kubeadm join xx.xx.xx.xx:6443 — token r3e6pp.3thxv2ze1aehvm7j \
+— discovery-token-ca-cert-hash sha256:5ce2e1ba5e84ce3ca9212089aaf0f282e23a741ed3ba7dd5c6576fdede43c9e1
+```
+
+yukarıdaki kod benim geliştirme ortamıma özel sizdeki token farklı olacaktır. Bu kodu kopyalayarak işçi sunucusuna giriyoruz. Çıktı aşağıdaki gibi olmalı;
+
+![1 GDdvSNmarzCOHelpB502AA.png](https://miro.medium.com/max/700/1*GDdvSNmarzCOHelpB502AA.png)
+
+Ana Sunucuda aşağıdaki komutu çalıştırıp küme durumunu kontrol ediyoruz;
+
+```bash
+kubectl get nodes
+```
+![1 lcFBAYPXscZ1IkAqiDW2Hg.png](https://miro.medium.com/max/700/1*lcFBAYPXscZ1IkAqiDW2Hg.png)
+
+## 1.6 Koza(Pod) Ağ Yapısı Oluşturulması
+
+Öncelikle Pod'un türkçeye tam olarak nasıl çevirileceğini bilmiyorum. Ben bu dökümanda Koza olarak bahsettim. Ama daha anlamlı veya tam anlamına karşılık gelen kelime olursa güncelleyebiliriz.
+
+Aşağıdaki komut ile küme durumunu kontrol ettiğimizde "NotReady" ifadesini görmüştük.
+
+```bash
+kubectl get nodes
+```
+
+Şimdi Ana Sunucumuz üstünde ağ yapılandırmasını yapalım ve sonrasında ilk dağıtımımızı gerçekleştirelim.
+
+```bash
+sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+```
+![1 K0p5NUnDSZp90qOnxFZXYw.png](https://miro.medium.com/max/700/1*K0p5NUnDSZp90qOnxFZXYw.png)
+
+## 2 Küme Kurulumu Sonrası Dağıtım Örneği
+
+Kubernetes kümesi kurulumu tamamlandığına göre artık ilk örneğimizi gerçekleştirebiliriz. Ben bu örnekte Nginx dağıtımı yapmak istiyorum.
+
+## 2.1 Nginx Dağıtımı
+
+Aşağıdaki komutları takip ederek ilk dağıtımımızı yapalım;
+
+```bash
+kubectl create deployment nginx — image=nginx
+```
+![1 FGdWukx2mFv27SSgEMNRJQ.png](https://miro.medium.com/max/640/1*FGdWukx2mFv27SSgEMNRJQ.png)
+
+```bash
+kubectl expose deploy nginx — port 80 — target-port 80 — type NodePort
+```
+![1 hBp_VUdX4fXgikJr9aAQIQ.png](https://miro.medium.com/max/700/1*hBp_VUdX4fXgikJr9aAQIQ.png)
+
+Dağıtımı tamamladık. Şimdi bu kozanın hangi düğümde ayağa kalktığını ve durumunu kontrol edelim;
+
+```bash
+kubectl get pod -o wide
+```
+![1 XZmcSy1JDCEuu3joD_eiHQ.png](https://miro.medium.com/max/700/1*XZmcSy1JDCEuu3joD_eiHQ.png)
+
+Gördüğünüz gibi bir sorun yok. Tarayıcınızdada aşağıdaki gibi bir çıktı elde edebilirsiniz;
+
+![1 mMewo5k_TFB3VgzeKdYQJg.png](https://miro.medium.com/max/700/1*mMewo5k_TFB3VgzeKdYQJg.png)
+
+Kubernetes kümesini oluşturduk ve ilk dağıtım gerçekleştirdik.
