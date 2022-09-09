@@ -64,10 +64,10 @@ Yukarıdaki işlemleri her iki sunucunuzdada çalıştırdıktan sonra aşağıd
 $ systemctl status docker
 ```
 
-Ana Sunucu
+Ana Sunucu  
 ![1 uEnKXv0iDIuQSVOshjotYQ.png](https://miro.medium.com/max/700/1*uEnKXv0iDIuQSVOshjotYQ.png)
 
-İşçi Sunucu
+İşçi Sunucu  
 ![1 67-WmTZQ4AgLFrVJQZ0L1w.png](https://miro.medium.com/max/700/1*67-WmTZQ4AgLFrVJQZ0L1w.png)
 
 ### 1.3 - Kubectl ve Kubeadm Kurulumu    
@@ -98,10 +98,10 @@ $ sudo apt-mark hold kubelet kubeadm kubectl
 ```
 Sunucularınızda son durum aşağıdaki gibi olmalı;
 
-Ana Sunucu
+Ana Sunucu  
 ![1 zDvjiuFnZvqfeTb7Qw2xvQ.png](https://miro.medium.com/max/700/1*zDvjiuFnZvqfeTb7Qw2xvQ.png)
 
-İşçi Sunucu
+İşçi Sunucu  
 ![1 67-WmTZQ4AgLFrVJQZ0L1w.png](https://miro.medium.com/max/700/1*Gd-Us6c_Pml1kXAs_jNbMg.png)
 
 Versiyon kontrolü için aşağıdaki kodu çalıştırıyoruz;
