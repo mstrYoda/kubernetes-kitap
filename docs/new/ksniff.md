@@ -1,0 +1,1 @@
+# Kubectl ile sniffer - ksinff

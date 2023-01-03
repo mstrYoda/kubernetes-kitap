@@ -1,0 +1,1 @@
+# Yaml/kubectl İşlemleri - kapp

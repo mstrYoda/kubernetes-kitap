@@ -1,0 +1,1 @@
+# Custom Resource Definition ve CR Yapısı

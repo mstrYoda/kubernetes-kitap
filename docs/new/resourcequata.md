@@ -1,0 +1,1 @@
+# ResourceQuata Objesi
