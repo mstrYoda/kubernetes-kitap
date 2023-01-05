@@ -1,1 +1,0 @@
-# ClusterRole ve ClusterRoleBinding

@@ -1,1 +1,0 @@
-# Dinamik Sertifika Yönetimi 
