@@ -4,7 +4,10 @@
 
 > Open Source severler olarak bir araya gelip, Kubernetes için Türkçe kaynak olması açısından bu kitabı hazırladık ve siz değerli okuyuculara sunduk.
 
-Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
+
+Bu kitabı https://github.com/mstrYoda/kubernetes-kitap adresinden forkladım. Boş belgeleri doldurarak belgeye devam ediyorum. Pull request'lere bakılmadığı için yeni yazdığım notlarıda okumak için yeni bir adres olarak devam ediyorum. Döküman'ı ilerleten herkeze teşekkür ediyorum.
+
+**Forklanan Kitabın adresi:** https://mstryoda.github.io/kubernetes-kitap/#/
 
 
 # Konu Başlıkları

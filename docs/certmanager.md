@@ -9,3 +9,5 @@ DCM, Kubernetes cluster'ında çalışan servislerin sertifikalarını oluşturm
  - **Cert-manager:** Cert-manager, Kubernetes'te sertifikaların oluşturulması ve yönetilmesi için kullanılan bir araçtır. Cert-manager, sertifikaların otomatik olarak oluşturulması, yönetilmesi ve yenilenmesi için kullanılır. Örneğin, sertifikaların geçerlilik süresi dolması durumunda Cert-manager, otomatik olarak yeni sertifikalar oluşturarak sistemi güncel tutar.
 
  - **Let's Encrypt:** Let's Encrypt, internet üzerinde ücretsiz SSL/TLS sertifikaları sunan bir kuruluştur. Kubernetes'te de Cert-manager kullanılarak Let's Encrypt üzerinden sertifikalar oluşturulabilir.
+
+
