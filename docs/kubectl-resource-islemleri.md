@@ -96,4 +96,4 @@ Kubectl ile elimizde herhangi bir yaml dosyası olmadığında da deployment olu
 
 Bir deploymentı scale up/down etmek için:
 
-`kubectl scale deplyoment <deployment-name> --replicas=3`
+`kubectl scale deployment <deployment-name> --replicas=3`
