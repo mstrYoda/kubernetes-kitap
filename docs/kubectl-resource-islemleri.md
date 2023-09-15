@@ -26,11 +26,21 @@ kubectl get configmap -n test-namespace -o json \
 Kubectl apply ile clustera deploy ettiğimiz değişiklikleri geri almak istersek `kubectl delete -f filename.yaml` diyerek silme işlemini sağlayabiliriz.
 
 ##### Dry Run
+Kubernetes ile çalışırken, uygulama ve kaynak konfigürasyonlarınızı yönetmek, önemli bir görevdir. Yanlış konfigürasyonlar veya hatalar, can sıkıcı sorunlara neden olabilir. İşte bu noktada, `kubectl dry-run` özelliği devreye girer. Bu özellik, Kubernetes kaynaklarınızı oluşturmadan veya değiştirmeden önce değişiklikleri ön izlemenize olanak tanır. 
 
+İlk olarak, oluşturmak veya değiştirmek istediğiniz Kubernetes kaynağı için bir YAML veya JSON konfigürasyon dosyasına ihtiyacınız vardır. Bu dosya, kaynağınızın tüm özelliklerini içermelidir. Örneğin, bir pod, bir deployment veya bir servis gibi herhangi bir Kubernetes nesnesinin gereksinimlerini tanımlar.
+
+`kubectl dry-run` komutunu kullanarak değişiklikleri ön izleyebilirsiniz. `--dry-run=client`  kullanarak komutu çalıştırın ve ardından `-f `  ile konfigürasyon dosyasını belirtin. 
+
+İşte örnek bir komut:
+```
+kubectl apply --dry-run=client -f deployment.yaml
+```
+Özet olarak; `--dry-run=client` , konfigürasyonunuzu sunucuya iletmeksizin istemci tarafında doğrulama yapmanızı sağlar. Bu, konfigürasyonunuzun sözdizim hataları veya diğer sorunlar açısından kontrol edilmesine olanak tanır. `kubectl` , deploymentı uygulamadan önce beklenen sonucu döndürecek ve clusterda gerçekleşecek hiçbir değişiklik yapmayacaktır. Çıktıyı gözden geçirerek, kaynak konfigürasyonunuzda hatalar, uyarılar veya sorunlar olup olmadığını kontrol edebilirsiniz. Bu, herhangi bir sorunu önceden tespit ederek düzeltmenize yardımcı olur.
+
+Not: Unutmayın ki `--dry-run` özelliği, yalnızca konfigürasyon hatalarını ve yapısal sorunları kontrol etmek için kullanışlıdır. Bu, kaynağın gerçek dünyada nasıl davranacağı veya clusterın durumu hakkında herhangi bir garanti sağlamaz.
 
 # Diff
-
-
 
 # Resource Listelemek
 
