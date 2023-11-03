@@ -6,13 +6,15 @@ Bu konfigürasyon değerlerini tutan ConfigMap objelerini Deployment veya Pod gi
 
 Aşağıdaki örnekte `kubectl` kullanarak key-value bir ConfigMap objesi oluşturup daha sonrasında bunu Deployment objesine bağlayacağız.
 
-```
+```console
 kubectl create configmap --from-literal=myKEY=myValue app-config
 ```
 
 Oluşan ConfigMap objemizin değerine Kubernetes üzerinden bakalım:
 
-`kubectl get configmap -n default app-config -o yaml` :
+```console
+kubectl get configmap -n default app-config -o yaml`
+```
 
 ```
 apiVersion: v1
@@ -98,8 +100,6 @@ volumeMounts:
 ```
 
 Deployment objemize ait bir Pod objesine girip `/tmp/configs` yoluna gittiğimizde aşağıdaki şekilde ConfigMap objemizin içerisindeki key değerlerinin dosya olarak oluştuğunu görüyoruz:
-
-`ls /tmp/configs`:
 
 ```console
 root@nginx-d984f49d7-cjblq:/# ls /tmp/configs/
