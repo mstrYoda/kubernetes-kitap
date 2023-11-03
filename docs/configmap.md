@@ -101,14 +101,16 @@ Deployment objemize ait bir Pod objesine girip `/tmp/configs` yoluna gittiğimiz
 
 `ls /tmp/configs`:
 
-```
+```console
 root@nginx-d984f49d7-cjblq:/# ls /tmp/configs/
 myKEY
 ```
 
-`cat /tmp/configs/myKEY`:
+```console
+root@nginx-d984f49d7-cjblq:/# cat /tmp/configs/myKEY
+myValue
+```
 
-`myValue`
 
 ## ConfigMap Değerinin Güncellenmesi Senaryosu
 
@@ -116,28 +118,29 @@ Eğer hali hazırda bir Pod objesine bağlanan bir ConfigMap objesi güncellenir
 
 Az önceki örnekte sürekli olarak myKEY değerini ekrana yazdıran bir komut yazalım ve kodu çalıştırdıktan sonra ConfigMap objemizde myKEY değerini newValue olarak güncelleyelim ve komutun çıktısına bakalım:
 
-`while true; do cat /tmp/configs/myKEY; echo '/n'; sleep 1; done`:
+```console
 
-```
-myValue/n
-myValue/n
-myValue/n
-myValue/n
-myValue/n
-myValue/n
-myValue/n
-myValue/n
-myValue/n
-myValue/n
-myValue/n
-newValue/n
-newValue/n
-newValue/n
-newValue/n
-newValue/n
-newValue/n
-newValue/n
-newValue/n
+root@nginx-d984f49d7-cjblq:/# while true; do cat /tmp/configs/myKEY; sleep 1; done;
+
+myValue
+myValue
+myValue
+myValue
+myValue
+myValue
+myValue
+myValue
+myValue
+myValue
+myValue
+newValue
+newValue
+newValue
+newValue
+newValue
+newValue
+newValue
+newValue
 ```
 
 Çıktıda ConfigMap objesindeki değer değişikliğinin Pod dosya sistemine yansıdığını görebiliyoruz.
