@@ -16,7 +16,7 @@ Oluşan ConfigMap objemizin değerine Kubernetes üzerinden bakalım:
 kubectl get configmap -n default app-config -o yaml`
 ```
 
-```
+```yaml
 apiVersion: v1
 data:
   myKEY: myValue
