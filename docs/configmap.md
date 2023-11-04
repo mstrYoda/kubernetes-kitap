@@ -6,15 +6,17 @@ Bu konfigürasyon değerlerini tutan ConfigMap objelerini Deployment veya Pod gi
 
 Aşağıdaki örnekte `kubectl` kullanarak key-value bir ConfigMap objesi oluşturup daha sonrasında bunu Deployment objesine bağlayacağız.
 
-```
+```console
 kubectl create configmap --from-literal=myKEY=myValue app-config
 ```
 
 Oluşan ConfigMap objemizin değerine Kubernetes üzerinden bakalım:
 
-`kubectl get configmap -n default app-config -o yaml` :
-
+```console
+kubectl get configmap -n default app-config -o yaml`
 ```
+
+```yaml
 apiVersion: v1
 data:
   myKEY: myValue
@@ -99,16 +101,16 @@ volumeMounts:
 
 Deployment objemize ait bir Pod objesine girip `/tmp/configs` yoluna gittiğimizde aşağıdaki şekilde ConfigMap objemizin içerisindeki key değerlerinin dosya olarak oluştuğunu görüyoruz:
 
-`ls /tmp/configs`:
-
-```
+```console
 root@nginx-d984f49d7-cjblq:/# ls /tmp/configs/
 myKEY
 ```
 
-`cat /tmp/configs/myKEY`:
+```console
+root@nginx-d984f49d7-cjblq:/# cat /tmp/configs/myKEY
+myValue
+```
 
-`myValue`
 
 ## ConfigMap Değerinin Güncellenmesi Senaryosu
 
@@ -116,28 +118,29 @@ Eğer hali hazırda bir Pod objesine bağlanan bir ConfigMap objesi güncellenir
 
 Az önceki örnekte sürekli olarak myKEY değerini ekrana yazdıran bir komut yazalım ve kodu çalıştırdıktan sonra ConfigMap objemizde myKEY değerini newValue olarak güncelleyelim ve komutun çıktısına bakalım:
 
-`while true; do cat /tmp/configs/myKEY; echo '/n'; sleep 1; done`:
+```console
 
-```
-myValue/n
-myValue/n
-myValue/n
-myValue/n
-myValue/n
-myValue/n
-myValue/n
-myValue/n
-myValue/n
-myValue/n
-myValue/n
-newValue/n
-newValue/n
-newValue/n
-newValue/n
-newValue/n
-newValue/n
-newValue/n
-newValue/n
+root@nginx-d984f49d7-cjblq:/# while true; do cat /tmp/configs/myKEY; sleep 1; done;
+
+myValue
+myValue
+myValue
+myValue
+myValue
+myValue
+myValue
+myValue
+myValue
+myValue
+myValue
+newValue
+newValue
+newValue
+newValue
+newValue
+newValue
+newValue
+newValue
 ```
 
 Çıktıda ConfigMap objesindeki değer değişikliğinin Pod dosya sistemine yansıdığını görebiliyoruz.
