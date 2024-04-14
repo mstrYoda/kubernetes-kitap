@@ -1,6 +1,6 @@
 # Init Container nedir?
 
-InitContainer; pod içerisinde bulunan, containerlar ile aynı tipte fakat containerlar başlamadan önce çalışan bir yapıdır.
+InitContainer'lar uygulamanın main container'ı ayaga kalkmadan once calisan, pod içerisinde bulunan, containerlar ile aynı tipte fakat main containerlar başlamadan önce çalışan ozellestirilmis oncul containerlardir. InitContainer kullanimina ornek olarak uygulamanin ayaga kalkmasi icin gereken config ve secretleri podun file systemine inject etmemize yardimci olacak bir injector init containeri dusunulebilir ya da bazi kurulum scriptleri barindiran bir uygulama olarak dusunebiliriz. 
 
 Bir pod içerisinde birden fazla container olabildiği gibi birden fazla initContainer da olabilir. Pod içerisinde 'initContainers' fieldında dizi olarak tanımlanırlar.
 
