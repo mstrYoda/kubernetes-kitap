@@ -1,7 +1,7 @@
 
 # Kubernetes Deployment Yönetimi
 
-Kubernetes'in Deployment objesi, belirlenen desired state'e uygun olarak bir veya birden fazla pod oluşturur ve bu state'i sürekli olarak mevcut durumla karşılaştırır. Bu işlem, uygulamanın istenilen durumda kalmasını sağlar ve gerektiğinde düzeltmeler yapar.
+Kubernetes'in Deployment objesi, istenilen duruma uygun olarak bir veya birden fazla pod oluşturur ve bu istenilen durumu sürekli olarak mevcut durumla karşılaştırır. Bu işlem, uygulamanın istenilen durumda kalmasını sağlar ve gerektiğinde düzeltmeler yapar.
 
 ## Deployment Nedir?
 
@@ -101,6 +101,8 @@ spec:
 - **kind**: Obje türü.
 - **metadata**: İsim ve etiketler gibi meta veriler.
 - **spec**: Pod oluşturma ve yönetim ayarları.
+- **labels**: Objeleri tanımlamak ve gruplamak için kullandığımız key-value ikilileridir. Nesnelerin alt kümelerini düzenlememize ve seçmemize olanak tanır. Etiketler, nesnelerin oluşturulması sırasında eklenebilir ve daha sonra düzenlenebilir. Karmaşıklığı önler ve anlaşılabilirliği artırır. Örneğin, aynı takımda farklı alanlarda çalışan kişiler pod'lara belirli bir convention'a uyarak key-value ikilileri atadığında, her takımın çalıştığı pod'lar kolayca ayırt edilebilir. Kısacası, etiketler nesneleri tanımlama ve gruplama imkanı sunar. Ayrıca, objeler arasında bağ kurmaya da yarar. Örneğin, servisler ve deployment objeleri hangi pod'lar ile ilişki kuracağını etiketler sayesinde belirler.
+- **selector**: Etiketlerin belirli kombinasyonlarını seçmeye yarayan bir mekanizmadır. Selector'lar, belirli etiketlere sahip nesneleri seçip bu nesneler üzerinde toplu işlemler yapmamıza imkan tanır. Bu sayede, belirli kriterlere göre gruplandırılmış nesneleri kolayca bulup yönetebiliriz.
 
 ### YAML dosyası ile deployment yönetimi
 
