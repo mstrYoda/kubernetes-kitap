@@ -1,27 +1,30 @@
 # Pod Yaşam Döngüsü
 
-This page describes the lifecycle of a Pod. Pods follow a defined lifecycle, starting in the Pending phase, moving through Running if at least one of its primary containers starts OK, and then through either the Succeeded or Failed phases depending on whether any container in the Pod terminated in failure.
+Podlar belirli bir yaşam döngüsünü takip eder, bu döngü Pending aşamasıyla başlar ve containerlardan biri çalışı durumunda ise Running aşamasına doğru ilerler. Daha sonrasında Pod'da bulunan bır containerın fail olup terminate olup olmama durumuna bağlı olarak Failed ya da Succeeded aşamasına geçer.
 
-Like individual application containers, Pods are considered to be relatively ephemeral (rather than durable) entities. Pods are created, assigned a unique ID (UID), and scheduled to run on nodes where they remain until termination (according to restart policy) or deletion. If a Node dies, the Pods running on (or scheduled to run on) that node are marked for deletion. The control plane marks the Pods for removal after a timeout period.
+Bireysel uygulama containerları gibi, Pod'lar da nispeten geçici (kalıcı olmaktan ziyade) varlıklar olarak kabul edilir. Pod'lar oluşturulur, benzersiz bir kimlik (UID) atanır ve Node'larda çalışmak üzere zamanlanır; burada sonlandırılana (yeniden başlatma politikasına göre) veya silinene kadar kalırlar. Bir Node ölürse, o Node üzerinde çalışan (veya çalışmak üzere zamanlanmış) Pod'lar silinmek üzere işaretlenir. Kontrol düzlemi, bir zaman aşımı süresinden sonra Pod'ları kaldırmak üzere işaretler.
 
 ## Pod lifetime
-Whilst a Pod is running, the kubelet is able to restart containers to handle some kind of faults. Within a Pod, Kubernetes tracks different container states and determines what action to take to make the Pod healthy again.
 
-In the Kubernetes API, Pods have both a specification and an actual status. The status for a Pod object consists of a set of Pod conditions. You can also inject custom readiness information into the condition data for a Pod, if that is useful to your application.
+Bir Pod çalışırken, kubelet bazı türdeki hataları ele almak için konteynerleri yeniden başlatabilir. Bir Pod içinde, Kubernetes farklı container durumlarını izler ve Pod'u tekrar sağlıklı hale getirmek için ne tür bir eylem yapması gerektiğine karar verir.
 
-Pods are only scheduled once in their lifetime; assigning a Pod to a specific node is called binding, and the process of selecting which node to use is called scheduling. Once a Pod has been scheduled and is bound to a node, Kubernetes tries to run that Pod on the node. The Pod runs on that node until it stops, or until the Pod is terminated; if Kubernetes isn't able start the Pod on the selected node (for example, if the node crashes before the Pod starts), then that particular Pod never starts.
+Kubernetes API'sinde, Pod'ların hem bir spesifikasyonu hem de gerçek bir durumu vardır. Bir Pod nesnesinin durumu, bir dizi Pod koşulundan oluşur. Ayrıca, uygulamanız için yararlıysa, bir Pod'un durum verilerine özel hazır olma bilgilerini ekleyebilirsiniz (readiness probes).
 
-You can use Pod Scheduling Readiness to delay scheduling for a Pod until all its scheduling gates are removed. For example, you might want to define a set of Pods but only trigger scheduling once all the Pods have been created.
+Pod'lar yaşamları boyunca yalnızca bir kez zamanlanır; bir Pod'u belirli bir node'a atamaya binding denir ve hangi node'un kullanılacağını seçme sürecine scheduling denir. Bir Pod zamanlandığında ve bir node'a bağlandığında, Kubernetes o Pod'u node'da çalıştırmaya çalışır. Pod, durana kadar veya Pod sonlandırılana kadar o node'da çalışır; Kubernetes seçilen node'da Pod'u başlatamazsa (örneğin, node Pod başlamadan önce çökerse), o belirli Pod asla başlamaz.
+
+Pod Scheduling Readiness'i kullanarak bir Pod'un zamanlanmasını, tüm scheduling gates kaldırılana kadar erteleyebilirsiniz. Örneğin, bir dizi Pod tanımlamak isteyebilir ancak tüm Pod'lar oluşturulduğunda zamanlamayı tetiklemek isteyebilirsiniz.
+
 
 ## Pods and fault recovery
-If one of the containers in the Pod fails, then Kubernetes may try to restart that specific container. Read How Pods handle problems with containers to learn more.
 
-Pods can however fail in a way that the cluster cannot recover from, and in that case Kubernetes does not attempt to heal the Pod further; instead, Kubernetes deletes the Pod and relies on other components to provide automatic healing.
+Pod içindeki container'lardan biri başarısız olursa, Kubernetes belirli bir containerı yeniden başlatmayı deneyebilir. 
 
-If a Pod is scheduled to a node and that node then fails, the Pod is treated as unhealthy and Kubernetes eventually deletes the Pod. A Pod won't survive an eviction due to a lack of resources or Node maintenance.
+Ancak, Pod'lar cluster'ın geri kazanamayacağı bir şekilde fail olabilir ve bu durumda Kubernetes Pod'u daha fazla iyileştirmeye çalışmaz; bunun yerine, Kubernetes Pod'u siler ve otomatik iyileştirme sağlamak için diğer bileşenlere güvenir.
 
-Kubernetes uses a higher-level abstraction, called a controller, that handles the work of managing the relatively disposable Pod instances.
+Bir Pod bir node'a zamanlanmışsa ve o node daha sonra fail olursa, Pod sağlıksız olarak kabul edilir ve Kubernetes sonunda Pod'u siler. Bir Pod, kaynak yetersizliği veya Node bakımından dolayı tahliyeden sağ çıkamaz.
 
-A given Pod (as defined by a UID) is never "rescheduled" to a different node; instead, that Pod can be replaced by a new, near-identical Pod. If you make a replacement Pod, it can even have same name (as in .metadata.name) that the old Pod had, but the replacement would have a different .metadata.uid from the old Pod.
+Kubernetes, nispeten geçici Pod örneklerini yönetme işini üstlenen bir controller adlı daha yüksek düzeyde bir soyutlama kullanır.
 
-Kubernetes does not guarantee that a replacement for an existing Pod would be scheduled to the same node as the old Pod that was being replaced.
+Belirli bir Pod (UID ile tanımlanmış) asla farklı bir node'a "yeniden zamanlanmaz"; bunun yerine, o Pod yeni, neredeyse aynı bir Pod ile değiştirilebilir. Bir yedek Pod oluşturursanız, eski Pod'un sahip olduğu aynı adı (.metadata.name) bile kullanabilir, ancak yedek Pod eski Pod'dan farklı bir .metadata.uid'ye sahip olur.
+
+Kubernetes, mevcut bir Pod için bir yedeğin, değiştirilen eski Pod ile aynı node'a zamanlanacağını garanti etmez.

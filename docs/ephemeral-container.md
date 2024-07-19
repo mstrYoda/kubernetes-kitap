@@ -1,27 +1,26 @@
-# Ephermal Container
+# Ephemeral Container
 
-## Understanding ephemeral containers
-Pods are the fundamental building block of Kubernetes applications. Since Pods are intended to be disposable and replaceable, you cannot add a container to a Pod once it has been created. Instead, you usually delete and replace Pods in a controlled fashion using deployments.
+## Ephemeral Container'ları Anlamak
+Pod'lar, Kubernetes uygulamalarının temel yapı taşıdır. Pod'lar geçici ve değiştirilebilir olarak tasarlandığından, bir Pod oluşturulduktan sonra ona bir container ekleyemezsiniz. Bunun yerine, genellikle Pod'ları kontrollü bir şekilde siler ve değiştirirsiniz.
 
-Sometimes it's necessary to inspect the state of an existing Pod, however, for example to troubleshoot a hard-to-reproduce bug. In these cases you can run an ephemeral container in an existing Pod to inspect its state and run arbitrary commands.
+Ancak bazen mevcut bir Pod'un durumunu incelemek gerekebilir, örneğin, tekrarlanması zor bir hatayı gidermek için. Bu durumlarda, mevcut bir Pod'da geçici bir container çalıştırarak durumunu inceleyebilir ve rastgele komutlar çalıştırabilirsiniz.
 
-## What is an ephemeral container?
-Ephemeral containers differ from other containers in that they lack guarantees for resources or execution, and they will never be automatically restarted, so they are not appropriate for building applications. Ephemeral containers are described using the same ContainerSpec as regular containers, but many fields are incompatible and disallowed for ephemeral containers.
+## Ephemeral Container Nedir?
+Ephemeral container'lar, kaynaklar veya yürütme için garantiler içermediklerinden ve asla otomatik olarak yeniden başlatılmayacaklarından diğer container'lardan farklıdır, bu nedenle uygulama oluşturmak için uygun değillerdir. Ephemeral container'lar, normal container'larla aynı ContainerSpec kullanılarak tanımlanır, ancak birçok alan uyumsuzdur ve ephemeral container'lar için izin verilmez.
 
-Ephemeral containers may not have ports, so fields such as ports, livenessProbe, readinessProbe are disallowed.
-Pod resource allocations are immutable, so setting resources is disallowed.
-For a complete list of allowed fields, see the EphemeralContainer reference documentation.
-Ephemeral containers are created using a special ephemeralcontainers handler in the API rather than by adding them directly to pod.spec, so it's not possible to add an ephemeral container using kubectl edit.
+- Ephemeral container'lar portlara sahip olamaz, bu nedenle ports, livenessProbe, readinessProbe gibi alanlara izin verilmez.
+- Pod kaynak tahsisleri değiştirilemez olduğundan, kaynak ayarlamak izin verilmez.
+- İzin verilen alanların tam listesi için EphemeralContainer referans dökümantasyonuna bakın.
+- Ephemeral container'lar, API'deki özel ephemeralcontainers işleyicisi kullanılarak oluşturulur, bu nedenle doğrudan pod.spec'e eklenerek eklenmeleri mümkün değildir, bu yüzden kubectl edit kullanarak ephemeral container eklemek mümkün değildir.
 
-Like regular containers, you may not change or remove an ephemeral container after you have added it to a Pod.
+Normal container'lar gibi, bir Pod'a ekledikten sonra ephemeral container'ı değiştiremez veya kaldıramazsınız.
 
-Note:
-Ephemeral containers are not supported by static pods.
+Not:
+Ephemeral container'lar statik pod'lar tarafından desteklenmez.
 
-## Uses for ephemeral containers
-Ephemeral containers are useful for interactive troubleshooting when kubectl exec is insufficient because a container has crashed or a container image doesn't include debugging utilities.
+## Ephemeral Container Kullanım Alanları
+Ephemeral container'lar, bir container çöktüğünde veya bir container görüntüsü hata ayıklama araçları içermediğinde kubectl exec yetersiz olduğunda etkileşimli hata ayıklama için kullanışlıdır.
 
-In particular, distroless images enable you to deploy minimal container images that reduce attack surface and exposure to bugs and vulnerabilities. Since distroless images do not include a shell or any debugging utilities, it's difficult to troubleshoot distroless images using kubectl exec alone.
+Özellikle, distroless görüntüler, saldırı yüzeyini ve hata ve güvenlik açıklarına maruz kalmayı azaltan minimal container görüntüleri dağıtmanıza olanak tanır. Distroless görüntüler bir kabuk veya herhangi bir hata ayıklama aracı içermediğinden, distroless görüntüleri yalnızca kubectl exec kullanarak hata ayıklamak zordur.
 
-When using ephemeral containers, it's helpful to enable process namespace sharing so you can view processes in other containers.
-
+Ephemeral container'ları kullanırken, diğer container'lardaki işlemleri görebilmeniz için işlem ad alanı paylaşımını etkinleştirmek faydalıdır.

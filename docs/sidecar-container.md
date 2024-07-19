@@ -1,44 +1,43 @@
 # Sidecar Container
 
-Sidecar containers are the secondary containers that run along with the main application container within the same Pod. These containers are used to enhance or to extend the functionality of the primary app container by providing additional services, or functionality such as logging, monitoring, security, or data synchronization, without directly altering the primary application code.
+Sidecar container'ları, aynı Pod içinde ana uygulama container'ı ile birlikte çalışan ikincil container'lardır. Bu container'lar, ana uygulama container'ının işlevselliğini genişletmek veya artırmak için ek hizmetler veya işlevler (örneğin, günlük kaydı, izleme, güvenlik veya veri senkronizasyonu) sağlar, ana uygulama kodunu doğrudan değiştirmeden.
 
-Typically, you only have one app container in a Pod. For example, if you have a web application that requires a local webserver, the local webserver is a sidecar and the web application itself is the app container.
+Genellikle, bir Pod'da sadece bir uygulama container'ı bulunur. Örneğin, yerel bir web sunucusu gerektiren bir web uygulamanız varsa, yerel web sunucusu bir sidecar olarak kabul edilir ve web uygulamasının kendisi uygulama container'ıdır.
 
-## Sidecar containers in Kubernetes
-Kubernetes implements sidecar containers as a special case of init containers; sidecar containers remain running after Pod startup. This document uses the term regular init containers to clearly refer to containers that only run during Pod startup.
+## Kubernetes'te Sidecar Container'ları
 
-Provided that your cluster has the SidecarContainers feature gate enabled (the feature is active by default since Kubernetes v1.29), you can specify a restartPolicy for containers listed in a Pod's initContainers field. These restartable sidecar containers are independent from other init containers and from the main application container(s) within the same pod. These can be started, stopped, or restarted without effecting the main application container and other init containers.
+Kubernetes, sidecar container'larını, init container'larının özel bir durumu olarak uygular; sidecar container'ları, Pod başlatıldıktan sonra çalışmaya devam eder. Bu belgede, yalnızca Pod başlatma sırasında çalışan container'ları açıkça belirtmek için düzenli init container'ları terimi kullanılır.
 
-You can also run a Pod with multiple containers that are not marked as init or sidecar containers. This is appropriate if the containers within the Pod are required for the Pod to work overall, but you don't need to control which containers start or stop first. You could also do this if you need to support older versions of Kubernetes that don't support a container-level restartPolicy field.
+Kümenizde SidecarContainers özelliği etkinleştirilmişse (bu özellik Kubernetes v1.29'dan itibaren varsayılan olarak etkindir), bir Pod'un initContainers alanında listelenen container'lar için bir restartPolicy belirleyebilirsiniz. Bu yeniden başlatılabilir sidecar container'ları, aynı pod içindeki diğer init container'larından ve ana uygulama container'larından bağımsızdır. Bu container'lar, ana uygulama container'ını ve diğer init container'larını etkilemeden başlatılabilir, durdurulabilir veya yeniden başlatılabilir.
 
-## Differences from application containers
-Sidecar containers run alongside app containers in the same pod. However, they do not execute the primary application logic; instead, they provide supporting functionality to the main application.
+Ayrıca, init veya sidecar container'ları olarak işaretlenmemiş birden fazla container ile bir Pod çalıştırabilirsiniz. Bu, Pod içindeki container'ların Pod'un genel olarak çalışması için gerekli olduğu, ancak hangi container'ların önce başlatılıp durdurulması gerektiğini kontrol etmenize gerek olmadığı durumlarda uygundur. Bu, container düzeyinde restartPolicy alanını desteklemeyen daha eski Kubernetes sürümlerini desteklemeniz gerektiğinde de yapılabilir.
 
-Sidecar containers have their own independent lifecycles. They can be started, stopped, and restarted independently of app containers. This means you can update, scale, or maintain sidecar containers without affecting the primary application.
+## Uygulama Container'larından Farkları
 
-Sidecar containers share the same network and storage namespaces with the primary container. This co-location allows them to interact closely and share resources.
+Sidecar container'ları, aynı pod içindeki uygulama container'larının yanında çalışır. Ancak, ana uygulama mantığını yürütmezler; bunun yerine ana uygulamaya destekleyici işlevler sağlarlar.
 
-## Differences from init containers
-Sidecar containers work alongside the main container, extending its functionality and providing additional services.
+Sidecar container'larının kendi bağımsız yaşam döngüleri vardır. Uygulama container'larından bağımsız olarak başlatılabilir, durdurulabilir ve yeniden başlatılabilirler. Bu, sidecar container'larını güncelleyebileceğiniz, ölçeklendirebileceğiniz veya bakımını yapabileceğiniz anlamına gelir, bu da ana uygulamayı etkilemez.
 
-Sidecar containers run concurrently with the main application container. They are active throughout the lifecycle of the pod and can be started and stopped independently of the main container. Unlike init containers, sidecar containers support probes to control their lifecycle.
+Sidecar container'ları, ana container ile aynı ağ ve depolama ad alanlarını paylaşır. Bu birlikte yerleştirme, onların yakın etkileşimde bulunmasına ve kaynakları paylaşmasına olanak tanır.
 
-Sidecar containers can interact directly with the main application containers, because like init containers they always share the same network, and can optionally also share volumes (filesystems).
+## Init Container'larından Farkları
 
-Init containers stop before the main containers start up, so init containers cannot exchange messages with the app container in a Pod. Any data passing is one-way (for example, an init container can put information inside an emptyDir volume).
+Sidecar container'ları, ana container ile birlikte çalışarak işlevselliğini genişletir ve ek hizmetler sağlar.
 
-## Resource sharing within containers
-Given the order of execution for init, sidecar and app containers, the following rules for resource usage apply:
+Sidecar container'ları, ana uygulama container'ı ile eşzamanlı olarak çalışır. Pod'un yaşam döngüsü boyunca aktiftirler ve ana container'dan bağımsız olarak başlatılabilir ve durdurulabilirler. Init container'larının aksine, sidecar container'ları yaşam döngülerini kontrol etmek için probları destekler.
 
-    - The highest of any particular resource request or limit defined on all init containers is the effective init request/limit. If any resource has no resource limit specified this is considered as the highest limit.
+Sidecar container'ları, ana uygulama container'ları ile doğrudan etkileşime geçebilir, çünkü init container'ları gibi her zaman aynı ağı paylaşırlar ve isteğe bağlı olarak aynı hacimleri (dosya sistemlerini) de paylaşabilirler.
 
-    - The Pod's effective request/limit for a resource is the sum of pod overhead and the higher of:
-        - the sum of all non-init containers(app and sidecar containers) request/limit for a resource
-        - the effective init request/limit for a resource
-    - Scheduling is done based on effective requests/limits, which means init containers can reserve resources for initialization that are not used during the life of the Pod.
-    - The QoS (quality of service) tier of the Pod's effective QoS tier is the QoS tier for all init, sidecar and app containers alike.
-    - Quota and limits are applied based on the effective Pod request and limit.
+Init container'ları, ana container'lar başlamadan önce durur, bu nedenle init container'ları bir Pod'daki uygulama container'ı ile mesaj alışverişinde bulunamaz. Herhangi bir veri aktarımı tek yönlüdür (örneğin, bir init container'ı boş bir emptyDir hacmine bilgi koyabilir).
 
-## Sidecar containers and Linux cgroups
-On Linux, resource allocations for Pod level control groups (cgroups) are based on the effective Pod request and limit, the same as the scheduler.
+## Container'lar Arasında Kaynak Paylaşımı
 
+Init, sidecar ve uygulama container'larının yürütme sırası göz önüne alındığında, kaynak kullanımı için aşağıdaki kurallar geçerlidir:
+
+- Tüm init container'larında tanımlanan belirli bir kaynak isteği veya limitinin en yükseği, etkili init isteği/limiti olarak kabul edilir. Herhangi bir kaynak için limit belirtilmemişse, bu en yüksek limit olarak kabul edilir.
+- Pod'un bir kaynak için etkili isteği/limiti, pod overhead'in ve aşağıdakilerin toplamıdır:
+  - Tüm non-init container'larının (uygulama ve sidecar container'ları) bir kaynak için isteği/limitinin toplamı
+  - Bir kaynak için etkili init isteği/limiti
+- Zamanlama, etkili isteklere/limitlere göre yapılır, bu da init container'larının Pod'un yaşam süresi boyunca kullanılmayan kaynakları ayırabileceği anlamına gelir.
+- Pod'un QoS (hizmet kalitesi) seviyesi, tüm init, sidecar ve uygulama container'ları için geçerli olan QoS seviyesiyle aynıdır.
+- Kota ve limitler, etkili Pod isteği ve limitine göre uygulanır.

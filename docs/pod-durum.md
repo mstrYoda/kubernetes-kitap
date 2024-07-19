@@ -1,22 +1,22 @@
 # Pod Durumlari
 
-A Pod's status field is a PodStatus object, which has a phase field.
+Bir Pod'un durum alanı, bir phase alanına sahip olan bir PodStatus nesnesidir.
 
-The phase of a Pod is a simple, high-level summary of where the Pod is in its lifecycle. The phase is not intended to be a comprehensive rollup of observations of container or Pod state, nor is it intended to be a comprehensive state machine.
+Bir Pod'un phase'i, Pod'un yaşam döngüsünde nerede olduğunun basit ve yüksek düzeyde bir özetidir. Phase, container veya Pod durumunun kapsamlı bir gözlemi veya kapsamlı bir durum makinesi olması amaçlanmamıştır.
 
-The number and meanings of Pod phase values are tightly guarded. Other than what is documented here, nothing should be assumed about Pods that have a given phase value.
+Pod phase değerlerinin sayısı ve anlamları sıkı bir şekilde korunur. Burada belgelenenler dışında, belirli bir phase değerine sahip Pod'lar hakkında hiçbir varsayımda bulunulmamalıdır.
 
-Here are the possible values for phase:
+Phase için olası değerler şunlardır:
 
-Value	Description
-Pending	The Pod has been accepted by the Kubernetes cluster, but one or more of the containers has not been set up and made ready to run. This includes time a Pod spends waiting to be scheduled as well as the time spent downloading container images over the network.
-Running	The Pod has been bound to a node, and all of the containers have been created. At least one container is still running, or is in the process of starting or restarting.
-Succeeded	All containers in the Pod have terminated in success, and will not be restarted.
-Failed	All containers in the Pod have terminated, and at least one container has terminated in failure. That is, the container either exited with non-zero status or was terminated by the system, and is not set for automatic restarting.
-Unknown	For some reason the state of the Pod could not be obtained. This phase typically occurs due to an error in communicating with the node where the Pod should be running.
-Note:
-When a Pod is being deleted, it is shown as Terminating by some kubectl commands. This Terminating status is not one of the Pod phases. A Pod is granted a term to terminate gracefully, which defaults to 30 seconds. You can use the flag --force to terminate a Pod by force.
-Since Kubernetes 1.27, the kubelet transitions deleted Pods, except for static Pods and force-deleted Pods without a finalizer, to a terminal phase (Failed or Succeeded depending on the exit statuses of the pod containers) before their deletion from the API server.
+| Değer      | Açıklama |
+|------------|----------|
+| Pending    | Pod, Kubernetes cluster'ı tarafından kabul edilmiştir, ancak bir veya daha fazla container kurulmamış ve çalışmaya hazır hale getirilmemiştir. Bu, bir Pod'un zamanlanmayı beklerken geçirdiği zamanı ve ağ üzerinden container görüntülerini indirirken geçirdiği zamanı içerir. |
+| Running    | Pod bir node'a bağlanmış ve tüm containerlar oluşturulmuştur. En az bir container hala çalışıyor veya başlatılıyor ya da yeniden başlatılıyor. |
+| Succeeded  | Pod'daki tüm containerlar başarıyla sonlanmış ve yeniden başlatılmayacaktır. |
+| Failed     | Pod'daki tüm containerlar sonlanmış ve en az bir container başarısızlıkla sonlanmıştır. Yani, container sıfır olmayan bir durum kodu ile çıkmış veya sistem tarafından sonlandırılmış ve otomatik olarak yeniden başlatılmak üzere ayarlanmamıştır. |
+| Unknown    | Bir nedenle Pod'un durumu elde edilememiştir. Bu phase tipik olarak Pod'un çalışması gereken node ile iletişimde bir hata olduğunda ortaya çıkar. |
 
-If a node dies or is disconnected from the rest of the cluster, Kubernetes applies a policy for setting the phase of all Pods on the lost node to Failed.
+Not:
+Bir Pod silinirken, bazı kubectl komutları tarafından Terminating olarak gösterilir. Bu Terminating durumu, Pod phase'lerinden biri değildir. Bir Pod'a, gracefully bir şekilde terminate edilmesi için bir süre verilir ve bu varsayılan olarak 30 saniyedir. Bir Pod'u zorla sonlandırmak için --force bayrağını kullanabilirsiniz. Kubernetes 1.27'den beri, kubelet, statik Pod'lar ve finalizer olmadan zorla silinen Pod'lar hariç, silinmiş Pod'ları API sunucusundan silinmeden önce bir terminal phase'e (Pod containerlarının çıkış durumlarına bağlı olarak Failed veya Succeeded) geçirir.
 
+Bir node ölürse veya cluster'dan düşerse, Kubernetes, kaybolan node'daki tüm Pod'ların phase'ini Failed olarak ayarlamak için bir politika uygular.
