@@ -40,12 +40,11 @@
     * [ReplicaSets](replicasets.md)
 
 * Pod Genel Bakış
-    * **Pod Yaşam Döngüsü**
-        * [Container Statüleri](container-faz.md)
+    * [Pod Yaşam Döngüsü](pod-yasam-dongu.md)
         * [Pod Durumları](pod-durum.md)
+        * [Container Statüleri](container-faz.md)
         * [Init Container](init-container.md)
-    * [Pod Preset](pod-preset.md)
-    * [Static Pod](static-pod.md)
+    * [Sidecar Container](sidecar-container.md)
     * [Ephemeral Container](ephemeral-container.md)
 * **Podların Çalışacağı Nodeları Belirleme - Scheduling**
     * [NodeSelector Alanı](nodeselector.md)
