@@ -15,6 +15,10 @@ Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
     * [Kubernetes Nedir](kubernetes-nedir.md)
     * [Kubernetes Cluster Mimarisi](cluster.md)
     * [Pod ve Container Kavramı](pod-container.md)
+    * [Linux Namespaces](linux-namespaces.md)
+    * [Pid Namespaces](pid-namespaces.md)
+    * [Mount Namespaces](mount-namespaces.md)
+    * [Chroot ve Pivot_root](chroot-vs-pivot-root.md)
 
 * Kubernetes Node Elemanları
     * [Control Plane Elemanları](control-plane.md)
