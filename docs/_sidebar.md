@@ -5,6 +5,12 @@
     * [Kubernetes Cluster Mimarisi](cluster.md)
     * [Pod ve Container Kavramı](pod-container.md)
 
+* Konteyner Altyapı Kavramları
+    * [Linux Namespaces Nedir?](linux-namespaces.md)
+    * [PID Namespaces](pid-namespaces.md)
+    * [Mount Namespaces](mount-namespaces.md)
+    * [Chroot ve Pivot_root](chroot-vs-pivot-root.md)
+
 * Kubernetes Node Elemanları
     * [Control Plane Elemanları](control-plane.md)
         * [api-server](control-plane?id=api-server.md)
