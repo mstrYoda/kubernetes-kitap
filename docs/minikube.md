@@ -115,7 +115,7 @@ minikube node add
 ## Eklentiler ile çalışma
 
 minikube bütün bu yeteneklerine ek olarak eklenti desteği de sağlamaktadır. 
-Örneğin test  clusterinizde bir ingress kurmak ve deneyimlemek istiyorsunuzz bu minikube  ile sanieler  içerisinde mümkün.
+Örneğin test clusterinizde bir ingress kurmak ve deneyimlemek istiyorsanız bu minikube ile saniyeler içerisinde mümkün.
 
 işte eklentiler ile çalışmak  için birkaç cli komutu
 
