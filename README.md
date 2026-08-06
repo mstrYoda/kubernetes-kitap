@@ -145,4 +145,4 @@ Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=mstrYoda/kubernetes-kitap&type=Date)](https://star-history.com/#mstrYoda/kubernetes-kitap&Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=mstrYoda/kubernetes-kitap&type=date&legend=top-left)](https://star-history.dera.page/#mstrYoda/kubernetes-kitap&type=date&legend=top-left)
