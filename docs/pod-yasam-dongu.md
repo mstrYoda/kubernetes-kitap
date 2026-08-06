@@ -1,6 +1,6 @@
 # Pod Yaşam Döngüsü
 
-Podlar belirli bir yaşam döngüsünü takip eder, bu döngü Pending aşamasıyla başlar ve containerlardan biri çalışı durumunda ise Running aşamasına doğru ilerler. Daha sonrasında Pod'da bulunan bır containerın fail olup terminate olup olmama durumuna bağlı olarak Failed ya da Succeeded aşamasına geçer.
+Podlar belirli bir yaşam döngüsünü takip eder, bu döngü Pending aşamasıyla başlar ve containerlardan biri çalışır durumunda ise Running aşamasına doğru ilerler. Daha sonrasında Pod'da bulunan bir containerın fail olup terminate olup olmama durumuna bağlı olarak Failed ya da Succeeded aşamasına geçer.
 
 Bireysel uygulama containerları gibi, Pod'lar da nispeten geçici (kalıcı olmaktan ziyade) varlıklar olarak kabul edilir. Pod'lar oluşturulur, benzersiz bir kimlik (UID) atanır ve Node'larda çalışmak üzere zamanlanır; burada sonlandırılana (yeniden başlatma politikasına göre) veya silinene kadar kalırlar. Bir Node ölürse, o Node üzerinde çalışan (veya çalışmak üzere zamanlanmış) Pod'lar silinmek üzere işaretlenir. Kontrol düzlemi, bir zaman aşımı süresinden sonra Pod'ları kaldırmak üzere işaretler.
 
