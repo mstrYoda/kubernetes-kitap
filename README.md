@@ -26,9 +26,10 @@ Kitabın adresi: https://mstryoda.github.io/kubernetes-kitap/#/
         * [etcd](./docs/control-plane?id=etcd.md)
         * [controller-manager](./docs/control-plane?id=controller-manager.md)
         * [scheduler](./docs/control-plane?id=scheduler.md)
-    * [Worker Node Elemanları](./docs/data-plane.md)
-        * [kubelet](./docs/data-plane?id=kubelet.md)
-        * [kube-proxy](./docs/data-plane?id=kube-proxy.md)
+    * [Worker Node Elemanları](./docs/worker-node.md)
+        * [kubelet](./docs/worker-node?id=kubelet.md)
+        * [kube-proxy](./docs/worker-node?id=kube-proxy.md)
+        * [container-runtime](./docs/worker-node?id=container-runtime.md)
 
 * Development Ortamı Kurulumu
     * [**kind**](./docs/kind.md)
